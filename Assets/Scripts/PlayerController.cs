@@ -4,8 +4,10 @@ using System.Collections;
 [RequireComponent(typeof(PlayerPhysics))]
 public class PlayerController : MonoBehaviour {
 
-	public float speed = 8;
-	public float acceleration = 3;
+	public const float gravity = 30.0f;
+	public const float speed = 8;
+	public const float acceleration = 30;
+	public const float jumpHeight = 12.0f;
 
 	private float currentSpeed;
 	private float targetSpeed;
@@ -23,12 +25,21 @@ public class PlayerController : MonoBehaviour {
 		targetSpeed = Input.GetAxisRaw("Horizontal") * speed;
 		currentSpeed = IncrementToward(currentSpeed, targetSpeed, acceleration);
 
+		if (playerPhysics.getOnGround()) {
+			movement.y = 0;
+
+			//Allow a jump if the player is on ground.
+			if(Input.GetButtonDown("Jump")){
+				movement.y = jumpHeight;
+			}
+		}
+
 		movement.z = currentSpeed;
-		movement.y = 0;
+		movement.y -= gravity * Time.deltaTime;
 		movement.x = 0;
 
 		//Time.deltaTime????
-		playerPhysics.move(movement);
+		playerPhysics.move(movement * Time.deltaTime);
 	}
 
 	private float IncrementToward (float _currentSpeed, float _targetSpeed, float _acceleration)
