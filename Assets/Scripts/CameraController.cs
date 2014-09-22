@@ -5,7 +5,7 @@ using System.Collections;
 public class CameraController : MonoBehaviour {
 
 	private Transform target;
-	private float trackSpeed = 100;
+	//private float trackSpeed = 100;
 
 	public void setTarget(Transform t){
 		target = t;
