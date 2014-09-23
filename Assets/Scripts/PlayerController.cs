@@ -4,8 +4,12 @@ using System.Collections;
 [RequireComponent(typeof(PlayerPhysics))]
 public class PlayerController : MonoBehaviour {
 
+	#region Variables
+	//Debugging Variables
+	private const bool enableManualInput = false;
+
 	//Player variables
-	public const float gravity = 30;
+	public const float gravityPull = 30;
 	public const float walkSpeed = 4;
 	public const float runSpeed = 8;
 	public const float acceleration = 30;
@@ -13,10 +17,12 @@ public class PlayerController : MonoBehaviour {
 	public const float slideDeceleration = 2;
 
 	//Player handling
+	public Vector3 gravity;
 	private float currentSpeed;
 	private float targetSpeed;
 	private Vector3 movement;
 	private float speed;
+	private int runningDirection;
 
 	//Player States
 	private bool jumping;
@@ -27,6 +33,7 @@ public class PlayerController : MonoBehaviour {
 	//Player components
 	private PlayerPhysics playerPhysics;
 	private Animator animator;
+	#endregion
 
 	// Use this for initialization
 	void Start () {
@@ -34,21 +41,24 @@ public class PlayerController : MonoBehaviour {
 		animator = GetComponent<Animator> ();
 		transform.eulerAngles = Vector3.up * 90;
 		running = false;
+		setGravityDown(gravityPull);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		float moveInput = 0;
+		runningDirection = 0;
 
-		//Autorun
+		#region Autorun
 		if (Time.realtimeSinceStartup >= 3 && !autoStarted) {
-			moveInput = 1;
+				runningDirection = 1;
 
-			if (Time.realtimeSinceStartup >= 5) {
-				running = true;
-				autoStarted = true;
-			}
+				if (Time.realtimeSinceStartup >= 5) {
+						running = true;
+						autoStarted = true;
+				}
 		}
+		#endregion
+
 		if (!sliding) {
 			//Increase speed if we're running
 			if (running) {
@@ -58,28 +68,31 @@ public class PlayerController : MonoBehaviour {
 				speed = walkSpeed;
 			}
 
-			/* //MANUAL INPUT!
-			//KEYBOARD VERTICAL CONTROLLER
-			moveInput = Input.GetAxisRaw ("Vertical");
-
-			//PHONE VERTICAL CONTROLLER
-			if (Input.touchCount == 1) {
-				moveInput = 1;
+			#region Manual Input
+			if (enableManualInput) {
+				//KEYBOARD VERTICAL CONTROLLER
+				runningDirection = (int)Input.GetAxisRaw("Vertical");
+				
+				//PHONE VERTICAL CONTROLLER
+				if (Input.touchCount == 1) {
+					runningDirection = 1;
+				}
+				if (Input.touchCount == 2) {
+					runningDirection = -1;
+				}
 			}
-			if (Input.touchCount == 2) {
-				moveInput = -1;
-			}*/
+			#endregion
 
 			//SET SPEED
-			if (moveInput == 1 || moveInput == -1) {
-				targetSpeed = moveInput * speed;
+			if (runningDirection == 1 || runningDirection == -1) {
+				targetSpeed = runningDirection * speed;
 			}
 
 			currentSpeed = IncrementToward (currentSpeed, targetSpeed, acceleration);
 
 			//Face direction
-			if(moveInput != 0){
-				transform.eulerAngles = Vector3.up * 90 * moveInput;
+			if(runningDirection != 0){
+				transform.eulerAngles = Vector3.up * 90 * runningDirection;
 			}
 		}
 		else{
@@ -87,14 +100,22 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if (playerPhysics.getOnGround()) {
-			movement.y = 0;
+			if(gravity.x == 0){
+				movement.y = 0;
+			}
+			else if(gravity.y == 0){
+				movement.x = 0;
+			}
 
+
+			#region Movement Restoration 
 			//If landed after a jump
 			if(jumping){
 				jumping = false;
 				animator.SetBool("JumpingListener", false);
 			}
 
+			//If we're sliding
 			if(sliding){
 				if(Mathf.Abs(currentSpeed) < runSpeed*0.8f){
 					sliding = false;
@@ -103,10 +124,12 @@ public class PlayerController : MonoBehaviour {
 					playerPhysics.ResetColliderSize();
 				}
 			}
+			#endregion
 
+			#region Player Movement Modification
 			//Allow a jump if the player is on ground and not currently sliding
 			if((Input.GetButtonDown("Jump") || Input.touchCount == 3) && !sliding){
-				movement.y = jumpHeight;
+				movement -= getGravityDirection() * jumpHeight;
 				jumping = true;
 				animator.SetBool("JumpingListener", true);
 			}
@@ -118,6 +141,19 @@ public class PlayerController : MonoBehaviour {
 
 				playerPhysics.SetColliderSize(new Vector3(10.3f, 1.5f, 3.0f), new Vector3(0.35f, 0.75f, 0.0f));
 			}
+
+			if(Input.GetButtonDown("GravityDown")){
+				setGravityDown(gravityPull);
+			}
+
+			if(Input.GetButtonDown("GravityLeft")){
+				setGravityLeft(gravityPull);
+			}
+
+			if(Input.GetButtonDown("GravityRight")){
+				setGravityRight(gravityPull);
+			}
+			#endregion
 		}
 
 
@@ -125,8 +161,8 @@ public class PlayerController : MonoBehaviour {
 		animator.SetFloat("SpeedListener", Mathf.Abs(currentSpeed));
 
 		movement.z = currentSpeed;
-		movement.y -= gravity * Time.deltaTime;
-		movement.x = 0;
+		movement.y += gravity.y * Time.deltaTime;
+		movement.x += gravity.x * Time.deltaTime;
 
 		playerPhysics.move(movement * Time.deltaTime);
 	}
@@ -145,5 +181,25 @@ public class PlayerController : MonoBehaviour {
 			}
 			return _targetSpeed; 
 		}
+	}
+
+	void setGravityDown(float gravityPull)
+	{
+		gravity = Vector3.down * gravityPull;
+	}
+
+	void setGravityLeft(float gravityPull)
+	{
+		gravity = Vector3.left * gravityPull;
+	}
+
+	void setGravityRight(float gravityPull)
+	{
+		gravity = Vector3.right * gravityPull;
+	}
+
+	public Vector3 getGravityDirection ()
+	{
+		return gravity.normalized;
 	}
 }
