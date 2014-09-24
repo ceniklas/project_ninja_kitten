@@ -18,8 +18,8 @@ public class PlayerPhysics : MonoBehaviour {
 	private Vector3 scaledBoxColliderSize;
 
 	//private int nrOfColRaysX = 0;
-	private int nrOfColRaysY = 5;
-	private int nrOfColRaysZ = 10;
+	private int nrOfColRaysUpDown = 5;
+	private int nrOfColRaysSideways = 10;
 
 	private bool onGround;
 	private const float skin = 0.05f;
@@ -40,7 +40,7 @@ public class PlayerPhysics : MonoBehaviour {
 		SetColliderSize (originalSize,originalCenter);
 	}
 
-	public void move(Vector3 movement){   
+	public void move(Vector3 movement, Vector3 gravity){   
 
 		float deltaX = movement.x;
 		float deltaY = movement.y;
@@ -50,14 +50,16 @@ public class PlayerPhysics : MonoBehaviour {
 
 		//Check for collisions in y
 		onGround = false;
-		for (int i = 0; i<nrOfColRaysY; i++) {
-			float dir = Mathf.Sign(deltaY);
+		for (int i = 0; i<nrOfColRaysUpDown; i++) {
+
+			//float dir = Mathf.Sign(deltaY);
+			Vector3 dir = Vector3.Scale(gravity.normalized, movement.normalized);
 
 			float x = (pos.x + scaledBoxColliderCenter.x - scaledBoxColliderSize.x/2.0f) + scaledBoxColliderSize.x/2.0f;
-			float y = pos.y + scaledBoxColliderCenter.y + scaledBoxColliderSize.y/2.0f * dir;
-			float z = (pos.z + scaledBoxColliderCenter.z - scaledBoxColliderSize.z/2.0f) + i*scaledBoxColliderSize.z/(nrOfColRaysY-1);
+			float y =  pos.y + scaledBoxColliderCenter.y - scaledBoxColliderSize.y/2.0f * dir.y;
+			float z = (pos.z + scaledBoxColliderCenter.z - scaledBoxColliderSize.z/2.0f) + i*scaledBoxColliderSize.z/(nrOfColRaysUpDown-1);
 
-			ray = new Ray(new Vector3(x, y, z), new Vector3(0, dir, 0));
+			ray = new Ray(new Vector3(x, y, z), dir);
 			Debug.DrawRay(ray.origin,ray.direction);
 
 			if (Physics.Raycast(ray, out rayHitDetector, Mathf.Abs(deltaY) + skin, collisionMask)) {
@@ -65,7 +67,7 @@ public class PlayerPhysics : MonoBehaviour {
 				//float distanceRayToHit = Vector3.Distance(ray.origin, rayHitDetector.point);
 				float distanceRayToHit = rayHitDetector.distance;
 				if(distanceRayToHit > skin){
-					deltaY = distanceRayToHit * dir - dir*skin;
+					deltaY = distanceRayToHit * -dir.y + dir.y*skin;
 				}
 				else{
 					deltaY = 0;
@@ -77,11 +79,11 @@ public class PlayerPhysics : MonoBehaviour {
 		}
 
 		//Check for collisions in z
-		for (int i = 0; i<nrOfColRaysZ; i++) {
+		for (int i = 0; i<nrOfColRaysSideways; i++) {
 			float dir = Mathf.Sign(deltaZ);
 			
 			float x = (pos.x + scaledBoxColliderCenter.x - scaledBoxColliderSize.x/2.0f) + scaledBoxColliderSize.x/2.0f;
-			float y = (pos.y + scaledBoxColliderCenter.y - scaledBoxColliderSize.y/2.0f) + i*scaledBoxColliderSize.y/(nrOfColRaysZ-1);
+			float y = (pos.y + scaledBoxColliderCenter.y - scaledBoxColliderSize.y/2.0f) + i*scaledBoxColliderSize.y/(nrOfColRaysSideways-1);
 			float z = pos.z + scaledBoxColliderCenter.z + scaledBoxColliderSize.z/2.0f * dir;
 
 
