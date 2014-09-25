@@ -8,6 +8,10 @@ public class ObstaclePlacer : MonoBehaviour {
 	public GameObject obstacle;
 	private int nrOfObstacles = 10;
 	private int rndNr;
+	private float distanceToFirstObstacle = 40.0f;
+	//private Transform transform;
+	//private float xPos = 3.3f;
+	//private float yPos = 1.8f;
 
 	// Use this for initialization
 	void Start () {
@@ -20,7 +24,8 @@ public class ObstaclePlacer : MonoBehaviour {
 			else{
 				obstacle = slideObstacle;
 			}
-			Instantiate(obstacle, new Vector3(3.3f, 1.8f, n * 20.0f), Quaternion.identity);
+			Instantiate(obstacle, new Vector3(0, 0, n * distanceToFirstObstacle), Quaternion.identity);
+
 		}	
 	}
 }
