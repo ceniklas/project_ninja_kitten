@@ -131,6 +131,7 @@ public class PlayerController : MonoBehaviour {
 			if((Input.GetButtonDown("Jump") || Input.touchCount == 3) && !sliding){
 				movement -= getGravityDirection() * jumpHeight;
 				jumping = true;
+				Debug.Log("JUMPED");
 				animator.SetBool("JumpingListener", true);
 			}
 
@@ -148,10 +149,14 @@ public class PlayerController : MonoBehaviour {
 
 			if(Input.GetButtonDown("GravityLeft")){
 				setGravityLeft(gravityPull);
+				Debug.Log("GOING LEFT");
+				transform.eulerAngles = new Vector3(1, 1 , 0) * 90;
+				//transform.Rotate(new Vector3(0,90,0));
 			}
 
 			if(Input.GetButtonDown("GravityRight")){
 				setGravityRight(gravityPull);
+				Debug.Log("GOING RIGHT");
 			}
 			#endregion
 		}
@@ -164,7 +169,7 @@ public class PlayerController : MonoBehaviour {
 		movement.y += gravity.y * Time.deltaTime;
 		movement.x += gravity.x * Time.deltaTime;
 
-		playerPhysics.move(movement * Time.deltaTime);
+		playerPhysics.move(movement * Time.deltaTime, gravity);
 	}
 
 	private float IncrementToward (float _currentSpeed, float _targetSpeed, float _acceleration)
