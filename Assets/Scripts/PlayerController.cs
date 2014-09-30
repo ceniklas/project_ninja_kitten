@@ -2,11 +2,12 @@
 using System.Collections;
 
 [RequireComponent(typeof(PlayerPhysics))]
+[RequireComponent(typeof(InputHandler))]
 public class PlayerController : MonoBehaviour {
 
 	#region Variables
 	//Debugging Variables
-	private const bool enableManualInput = false;
+	private const bool enableVerticalInput = false;
 
 	//Player variables
 	public const float gravityPull = 30;
@@ -33,29 +34,46 @@ public class PlayerController : MonoBehaviour {
 	//Player components
 	private PlayerPhysics playerPhysics;
 	private Animator animator;
+	private InputHandler inputHandler;
 	#endregion
 
 	// Use this for initialization
 	void Start () {
+		Debug.Log ("WELCOME");
+		print ("WELCOME2");
+
 		playerPhysics = GetComponent<PlayerPhysics>();
+		inputHandler = GetComponent<InputHandler>();
 		animator = GetComponent<Animator> ();
 		transform.eulerAngles = Vector3.up * 90;
 		running = false;
+		jumping = false;
+		sliding = false;
+		autoStarted = false;
 		setGravityDown(gravityPull);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		runningDirection = 0;
 
 		#region Autorun
-		if (Time.realtimeSinceStartup >= 3 && !autoStarted) {
+		if (Time.time < 5) {
+			inputHandler.inputDisabled = true;
+			
+			if(Time.time >= 3){
 				runningDirection = 1;
-
-				if (Time.realtimeSinceStartup >= 5) {
-						running = true;
-						autoStarted = true;
-				}
+				speed = walkSpeed;
+			}else{
+				return;
+			}
+		}
+		else{
+			//Only run once.
+			if(!autoStarted){
+				inputHandler.inputDisabled = false;
+				running = true;
+				autoStarted = true;
+			}
 		}
 		#endregion
 
@@ -69,22 +87,17 @@ public class PlayerController : MonoBehaviour {
 			}
 
 			#region Manual Input
-			if (enableManualInput) {
+			if (enableVerticalInput) {
 				//KEYBOARD VERTICAL CONTROLLER
-				runningDirection = (int)Input.GetAxisRaw("Vertical");
-				
-				//PHONE VERTICAL CONTROLLER
-				if (Input.touchCount == 1) {
-					runningDirection = 1;
-				}
-				if (Input.touchCount == 2) {
-					runningDirection = -1;
-				}
+				runningDirection = inputHandler.getVerticalInput();
+			}
+			else{
+				runningDirection = 1;
 			}
 			#endregion
 
 			//SET SPEED
-			if (runningDirection == 1 || runningDirection == -1) {
+			if (runningDirection != 0) { 
 				targetSpeed = runningDirection * speed;
 			}
 
@@ -99,6 +112,13 @@ public class PlayerController : MonoBehaviour {
 			currentSpeed = IncrementToward(currentSpeed, targetSpeed, slideDeceleration);
 		}
 
+		if (jumping && !inputHandler.inputDisabled) {
+			if(inputHandler.getJumpingInput()){
+				movement -= getGravityDirection() * jumpHeight;
+				inputHandler.inputDisabled = true;
+			}
+		}
+
 		if (playerPhysics.getOnGround()) {
 			if(gravity.x == 0){
 				movement.y = 0;
@@ -111,39 +131,41 @@ public class PlayerController : MonoBehaviour {
 			#region Movement Restoration 
 			//If landed after a jump
 			if(jumping){
+				inputHandler.inputDisabled = false;
 				jumping = false;
 				animator.SetBool("JumpingListener", false);
 			}
 
-			//If we're sliding
+			//If we should stop sliding
 			if(sliding){
 				if(Mathf.Abs(currentSpeed) < runSpeed*0.8f){
 					sliding = false;
 					animator.SetBool("SlidingListener", false);
 					targetSpeed = runSpeed;
 					playerPhysics.ResetColliderSize();
+					inputHandler.inputDisabled = false;
 				}
 			}
 			#endregion
 
 			#region Player Movement Modification
 			//Allow a jump if the player is on ground and not currently sliding
-			if((Input.GetButtonDown("Jump") || Input.touchCount == 3) && !sliding){
+			if(inputHandler.getJumpingInput() && !sliding){ //Todo - use !inputdisabled instead
 				movement -= getGravityDirection() * jumpHeight;
 				jumping = true;
-				Debug.Log("JUMPED");
 				animator.SetBool("JumpingListener", true);
 			}
 
-			if(Input.GetButtonDown("Slide")){
+			if(inputHandler.getSlideInput() && !inputHandler.inputDisabled){
 				sliding = true;
+				inputHandler.inputDisabled = true;
 				animator.SetBool("SlidingListener", true);
 				targetSpeed = 0;
 
 				playerPhysics.SetColliderSize(new Vector3(10.3f, 1.5f, 3.0f), new Vector3(0.35f, 0.75f, 0.0f));
 			}
 
-			if(Input.GetButtonDown("GravityDown")){
+			/*if(Input.GetButtonDown("GravityDown")){
 				setGravityDown(gravityPull);
 			}
 
@@ -157,7 +179,7 @@ public class PlayerController : MonoBehaviour {
 			if(Input.GetButtonDown("GravityRight")){
 				setGravityRight(gravityPull);
 				Debug.Log("GOING RIGHT");
-			}
+			}*/
 			#endregion
 		}
 
