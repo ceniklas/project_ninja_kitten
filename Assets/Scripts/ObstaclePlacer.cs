@@ -5,18 +5,17 @@ public class ObstaclePlacer : MonoBehaviour {
 
 	public GameObject jumpObstacle;
 	public GameObject slideObstacle;
-	public GameObject obstacle;
-	private int nrOfObstacles = 10;
+	private GameObject obstacle;
+	private int nrOfObstacles = 17;
 	private int rndNr;
-	private float distanceToFirstObstacle = 40.0f;
-	//private Transform transform;
-	//private float xPos = 3.3f;
-	//private float yPos = 1.8f;
+	private float distanceToObstacles = 30.0f;
+	private Vector3 obstaclePosition;
 
 	// Use this for initialization
 	void Start () {
 		for (int n = 1; n < nrOfObstacles; n++) {
 		rndNr = (int)(Random.value + 0.5);
+			obstaclePosition = new Vector3(0, 0, n * distanceToObstacles);
 
 			if (rndNr == 0) {
 				obstacle = jumpObstacle;
@@ -24,7 +23,9 @@ public class ObstaclePlacer : MonoBehaviour {
 			else{
 				obstacle = slideObstacle;
 			}
-			Instantiate(obstacle, new Vector3(0, 0, n * distanceToFirstObstacle), Quaternion.identity);
+			GameObject obs = (GameObject)Instantiate(obstacle, obstaclePosition, Quaternion.identity);
+			//Making obs childs of Obstacles
+			obs.transform.parent = transform;
 
 		}	
 	}

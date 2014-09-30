@@ -11,10 +11,10 @@ public class PlayerController : MonoBehaviour {
 	//Player variables
 	public const float gravityPull = 30;
 	public const float walkSpeed = 4;
-	public const float runSpeed = 8;
+	public const float runSpeed = 12;
 	public const float acceleration = 30;
 	public const float jumpHeight = 12;
-	public const float slideDeceleration = 2;
+	public const float slideDeceleration = 3;
 
 	//Player handling
 	public Vector3 gravity;
