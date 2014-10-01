@@ -15,7 +15,7 @@ public class CameraController : MonoBehaviour {
 		if (target) {
 			float x = transform.position.x;
 			float y = transform.position.y;
-			float z = target.position.z - 10;
+			float z = target.position.z -12;
 			//float z = IncrementToward(transform.position.z, target.position.z-5, trackSpeed);
 			transform.position = new Vector3(x, y, z);
 		}
