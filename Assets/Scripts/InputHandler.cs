@@ -34,7 +34,7 @@ public class InputHandler : MonoBehaviour {
 	}
 
 	public bool getJumpingInput(){
-		if (Input.GetButtonDown ("Jump") || Input.touchCount == 3) {
+		if (Input.GetButtonDown ("Jump") || Input.touchCount == 2) {
 			return true;
 		}
 		return false;

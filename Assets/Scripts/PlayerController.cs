@@ -39,9 +39,6 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Debug.Log ("WELCOME");
-		print ("WELCOME2");
-
 		playerPhysics = GetComponent<PlayerPhysics>();
 		inputHandler = GetComponent<InputHandler>();
 		animator = GetComponent<Animator> ();
