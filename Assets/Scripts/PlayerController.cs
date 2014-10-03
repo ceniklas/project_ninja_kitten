@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour {
 			currentSpeed = IncrementToward(currentSpeed, targetSpeed, slideDeceleration);
 		}
 
-		if (jumping && !inputHandler.inputDisabled) {
+		if (jumping && !inputHandler.inputDisabled && Application.platform != RuntimePlatform.Android) {
 			if(inputHandler.getJumpingInput()){
 				movement -= getGravityDirection() * jumpHeight;
 				inputHandler.inputDisabled = true;

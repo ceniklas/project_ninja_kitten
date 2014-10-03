@@ -58,8 +58,11 @@ public class SwipeTouchHandler : MonoBehaviour {
 				if (couldBeSwipe && (swipeTime < maxSwipeTime) && (swipeDist > minSwipeDist)) {
 					// It's a swiiiiiiiiiiiipe!
 					Debug.Log ("It's a swiiiiiiiiiiiipe!!!!!!!!!!!!!");
-					//int swipeDirection = (int)Mathf.Sign(touch.position.y - startPos.y);
-					i.SendMessage("SwipedDown",SendMessageOptions.DontRequireReceiver);
+					int swipeDirection = (int)Mathf.Sign(touch.position.y - startPos.y);
+					if(swipeDirection == -1){
+						i.SendMessage("SwipedDown",SendMessageOptions.DontRequireReceiver);
+					}
+
 					// Do something here in reaction to the swipe.
 				}
 				break;

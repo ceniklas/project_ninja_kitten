@@ -23,10 +23,10 @@ public class InputHandler : MonoBehaviour {
 		int runningDirection =(int)Input.GetAxisRaw("Vertical");
 		
 		//PHONE VERTICAL CONTROLLER
-		if (Input.touchCount == 1) {
+		if (Input.touchCount == 3) {
 			runningDirection = 1;
 		}
-		if (Input.touchCount == 2) {
+		if (Input.touchCount == 4) {
 			runningDirection = -1;
 		}
 
