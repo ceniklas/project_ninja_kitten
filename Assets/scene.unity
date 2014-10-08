@@ -8207,6 +8207,7 @@ GameObject:
   - 114: {fileID: 1732534990}
   - 114: {fileID: 1732534989}
   - 54: {fileID: 1732534991}
+  - 114: {fileID: 1732534992}
   m_Layer: 8
   m_Name: Player_ver2
   m_TagString: Player
@@ -8326,6 +8327,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1732534992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1732534983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde64ea5bd2bafa4f8f56ca6d2b6e476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseSkin: {fileID: 0}
 --- !u!1 &1734599518
 GameObject:
   m_ObjectHideFlags: 0
