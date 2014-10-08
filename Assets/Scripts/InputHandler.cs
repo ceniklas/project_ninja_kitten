@@ -45,6 +45,10 @@ public class InputHandler : MonoBehaviour {
 	}
 
 	public bool getJumpingInput(){
+		#if UNITY_EDITOR
+		return Input.GetButtonDown("Jump");
+		#endif
+
 		#if UNITY_ANDROID
 		if (swipedUp) {
 			swipedUp = false;
@@ -53,9 +57,7 @@ public class InputHandler : MonoBehaviour {
 		return false;
 		#endif
 
-		#if UNITY_STANDALONE
-		return Input.GetButtonDown("Jump");
-		#endif
+
 	}
 
 	public bool getSlideInput(){
