@@ -53,26 +53,7 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		#region Autorun
-		if (Time.time < 5) {
-			inputHandler.inputDisabled = true;
-			
-			if(Time.time >= 3){
-				runningDirection = 1;
-				speed = walkSpeed;
-			}else{
-				return;
-			}
-		}
-		else{
-			//Only run once.
-			if(!autoStarted){
-				inputHandler.inputDisabled = false;
-				running = true;
-				autoStarted = true;
-			}
-		}
-		#endregion
+		autoStartRun();
 
 		if (!sliding) {
 			//Increase speed if we're running
@@ -83,7 +64,7 @@ public class PlayerController : MonoBehaviour {
 				speed = walkSpeed;
 			}
 
-			#region Manual Input
+			#region Manual Vertical Input
 			if (enableVerticalInput) {
 				//KEYBOARD VERTICAL CONTROLLER
 				runningDirection = inputHandler.getVerticalInput();
@@ -92,6 +73,16 @@ public class PlayerController : MonoBehaviour {
 				runningDirection = 1;
 			}
 			#endregion
+
+
+			//KEYBOARD HORIZONTAL CONTROLLER
+			float xSteer = inputHandler.getHorizontalInput();
+			if(Mathf.Abs(xSteer) > 0.1){
+				movement.x += xSteer;
+			}
+			else{
+				movement.x = 0;
+			}
 
 			//SET SPEED
 			if (runningDirection != 0) { 
@@ -207,11 +198,33 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	void autoStartRun ()
+	{
+		if (Time.time < 5) {
+			inputHandler.inputDisabled = true;
+			
+			if(Time.time >= 3){
+				runningDirection = 1;
+				speed = walkSpeed;
+			}else{
+				return;
+			}
+		}
+		else{
+			//Only run once.
+			if(!autoStarted){
+				inputHandler.inputDisabled = false;
+				running = true;
+				autoStarted = true;
+			}
+		}
+	}
+
 	void setGravityDown(float gravityPull)
 	{
 		gravity = Vector3.down * gravityPull;
 	}
-
+	/*
 	void setGravityLeft(float gravityPull)
 	{
 		gravity = Vector3.left * gravityPull;
@@ -221,7 +234,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		gravity = Vector3.right * gravityPull;
 	}
-
+	*/
 	public Vector3 getGravityDirection ()
 	{
 		return gravity.normalized;

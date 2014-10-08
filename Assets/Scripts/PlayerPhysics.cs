@@ -47,7 +47,20 @@ public class PlayerPhysics : MonoBehaviour {
 		float deltaZ = movement.z;
 		Vector3 pos = transform.position;
 
+		//Check for collisions in x
+		ray = new Ray (new Vector3 (pos.x + scaledBoxColliderCenter.x + Mathf.Sign(deltaX)*0.5f, pos.y+0.5f, pos.z), new Vector3 (Mathf.Sign(deltaX), 0, 0));
+		Debug.DrawRay(ray.origin,ray.direction);
+		if (Physics.Raycast(ray, out rayHitDetector, Mathf.Abs(deltaX) + skin, collisionMask)) {
 
+			float distanceRayToHit = rayHitDetector.distance;
+			if(distanceRayToHit > skin){
+				deltaX = distanceRayToHit * -Mathf.Sign(deltaX) + Mathf.Sign(deltaX)*skin;
+			}
+			else{
+				deltaX = 0;
+			}
+		}
+		
 		//Check for collisions in y
 		onGround = false;
 		for (int i = 0; i<nrOfColRaysUpDown; i++) {
@@ -85,8 +98,6 @@ public class PlayerPhysics : MonoBehaviour {
 			float x = (pos.x + scaledBoxColliderCenter.x - scaledBoxColliderSize.x/2.0f) + scaledBoxColliderSize.x/2.0f;
 			float y = (pos.y + scaledBoxColliderCenter.y - scaledBoxColliderSize.y/2.0f) + i*scaledBoxColliderSize.y/(nrOfColRaysSideways-1);
 			float z = pos.z + scaledBoxColliderCenter.z + scaledBoxColliderSize.z/2.0f * dir;
-
-
 			
 			ray = new Ray(new Vector3(x, y, z), new Vector3(0, 0, dir));
 			Debug.DrawRay(ray.origin,ray.direction);

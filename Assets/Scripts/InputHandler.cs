@@ -5,11 +5,13 @@ using System.Collections;
 public class InputHandler : MonoBehaviour {
 	
 	public bool inputDisabled;
+	private bool swipedUp;
 	private bool swipedDown;
 
 	// Use this for initialization
 	void Start () {
 		inputDisabled = false;
+		swipedUp = false;
 		swipedDown = false;
 	}
 	
@@ -33,19 +35,45 @@ public class InputHandler : MonoBehaviour {
 		return runningDirection;
 	}
 
+	public float getHorizontalInput ()
+	{
+		//int runningDirection =(int)Input.GetAxisRaw("Horizontal");
+		
+		return Input.GetAxisRaw("Horizontal");//Input.acceleration.x;
+		
+		//return runningDirection;
+	}
+
 	public bool getJumpingInput(){
-		if (Input.GetButtonDown ("Jump") || Input.touchCount == 2) {
+		#if UNITY_ANDROID
+		if (swipedUp) {
+			swipedUp = false;
 			return true;
 		}
 		return false;
+		#endif
+
+		#if UNITY_STANDALONE
+		return Input.GetButtonDown("Jump");
+		#endif
 	}
 
 	public bool getSlideInput(){
+		#if UNITY_ANDROID
 		if (swipedDown) {
 			swipedDown = false;
 			return true;
 		}
+		return false;
+		#endif
+
+		#if UNITY_STANDALONE
 		return Input.GetButtonDown("Slide");
+		#endif
+	}
+
+	public void SwipedUp(){
+		swipedUp = true;
 	}
 
 	public void SwipedDown(){
