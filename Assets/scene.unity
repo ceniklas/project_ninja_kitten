@@ -8207,7 +8207,6 @@ GameObject:
   - 114: {fileID: 1732534990}
   - 114: {fileID: 1732534989}
   - 54: {fileID: 1732534991}
-  - 114: {fileID: 1732534992}
   m_Layer: 8
   m_Name: Player_ver2
   m_TagString: Player
@@ -8327,18 +8326,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1732534992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1732534983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dde64ea5bd2bafa4f8f56ca6d2b6e476, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseSkin: {fileID: 0}
 --- !u!1 &1734599518
 GameObject:
   m_ObjectHideFlags: 0
@@ -8829,6 +8816,7 @@ GameObject:
   - 114: {fileID: 1882080034}
   - 114: {fileID: 1882080033}
   - 114: {fileID: 1882080035}
+  - 114: {fileID: 1882080036}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -8937,6 +8925,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time: 0
   timer: {fileID: 35077156}
+--- !u!114 &1882080036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1882080027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde64ea5bd2bafa4f8f56ca6d2b6e476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseSkin: {fileID: 11400000, guid: 3ba1b42769b58874e81a9419f89696a1, type: 2}
 --- !u!1 &1882164114
 GameObject:
   m_ObjectHideFlags: 0

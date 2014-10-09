@@ -5,6 +5,7 @@ public class MenuHandler : MonoBehaviour {
 
 	private Color defaultColor = new Color32(255,45,195,255);
 	public bool gameQuit = false;
+	public bool gamePaused = false;
 
 	void OnMouseEnter(){
 		renderer.material.color = Color.black;

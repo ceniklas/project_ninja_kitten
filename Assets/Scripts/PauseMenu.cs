@@ -4,13 +4,14 @@ using System.Collections;
 public class PauseMenu : MonoBehaviour {
 
 	public GUISkin pauseSkin;
-	private Rect pauseRect;
+	private Rect pauseRect, mainRect;
 	private bool ifPaused = false;
 
 	// Use this for initialization
 	void Start () {
 		//Rect(float left, float top, float width, float height);
-		pauseRect = new Rect (Screen.width * 0.5f - 100, Screen.height * 0.5f - 100, 200, 200);
+		pauseRect = new Rect (Screen.width * 0.5f - 200, Screen.height * 0.5f - 100, 200, 200);
+		mainRect = new Rect (Screen.width * 0.5f, Screen.height * 0.5f - 100, 200, 200);
 	}
 
 	// Update is called once per frame
@@ -31,16 +32,26 @@ public class PauseMenu : MonoBehaviour {
 	}
 
 	void OnGUI(){
+		GUI.skin = pauseSkin;
+
 		if (ifPaused){
-			pauseRect = GUI.Window(0, pauseRect, pauseFunc, "Pause Menu");
+			pauseRect = GUI.Window(0, pauseRect, pauseFunc, " ");
+			mainRect = GUI.Window(1, mainRect, mainFunc, " ");
 		}
 	}
 
 	void pauseFunc(int id){
-		if (GUILayout.Button ("Resume Game")){
+		if (GUI.Button (new Rect (55,85,100,50), "Resume Game")){
 			ifPaused = false;
 			Time.timeScale = 1;
 		}
+	}
 
+	void mainFunc(int id){
+		if (GUI.Button (new Rect (55,85,100,50), "Main Menu")){
+			ifPaused = false;
+			Time.timeScale = 1;
+			Application.LoadLevel(0);
+		}
 	}
 }
