@@ -7,7 +7,8 @@ public class HitCoin : MonoBehaviour {
 
 	void Start(){
 		//Finds the PointSystem script in totalpoints
-		p = transform.parent.parent.gameObject.GetComponentInChildren<PointSystem> ();
+		p = GameObject.Find ("PointSystem").GetComponent<PointSystem>();
+			//transform.parent.parent.gameObject.GetComponentInChildren<PointSystem> ();
 	}
 
 	void OnTriggerEnter(Collider other) {
