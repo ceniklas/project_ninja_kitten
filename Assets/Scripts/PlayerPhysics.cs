@@ -19,7 +19,7 @@ public class PlayerPhysics : MonoBehaviour {
 
 	//private int nrOfColRaysX = 0;
 	private int nrOfColRaysUpDown = 5;
-	private int nrOfColRaysSideways = 10;
+	private int nrOfColRaysForwardBack = 10;
 
 	private bool onGround;
 	private const float skin = 0.05f;
@@ -92,11 +92,11 @@ public class PlayerPhysics : MonoBehaviour {
 		}
 
 		//Check for collisions in z
-		for (int i = 0; i<nrOfColRaysSideways; i++) {
+		for (int i = 0; i<nrOfColRaysForwardBack; i++) {
 			float dir = Mathf.Sign(deltaZ);
 			
 			float x = (pos.x + scaledBoxColliderCenter.x - scaledBoxColliderSize.x/2.0f) + scaledBoxColliderSize.x/2.0f;
-			float y = (pos.y + scaledBoxColliderCenter.y - scaledBoxColliderSize.y/2.0f) + i*scaledBoxColliderSize.y/(nrOfColRaysSideways-1);
+			float y = (pos.y + scaledBoxColliderCenter.y - scaledBoxColliderSize.y/2.0f) + i*scaledBoxColliderSize.y/(nrOfColRaysForwardBack-1);
 			float z = pos.z + scaledBoxColliderCenter.z + scaledBoxColliderSize.z/2.0f * dir;
 			
 			ray = new Ray(new Vector3(x, y, z), new Vector3(0, 0, dir));
@@ -113,6 +113,8 @@ public class PlayerPhysics : MonoBehaviour {
 					deltaZ = 0;
 				}
 
+				Destroy(rayHitDetector.transform.gameObject);
+			
 				break; //If a ray hits we don't have to check the rest.
 			}
 		}
