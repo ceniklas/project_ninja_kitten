@@ -47,16 +47,13 @@ public class PlayerPhysics : MonoBehaviour {
 		float deltaZ = movement.z;
 		Vector3 pos = transform.position;
 
-		//Check for collisions in x
-		ray = new Ray (new Vector3 (pos.x + scaledBoxColliderCenter.x + Mathf.Sign(deltaX)*0.5f, pos.y+0.5f, pos.z), new Vector3 (Mathf.Sign(deltaX), 0, 0));
-		Debug.DrawRay(ray.origin,ray.direction);
-		if (Physics.Raycast(ray, out rayHitDetector, Mathf.Abs(deltaX) + skin, collisionMask)) {
-
-			float distanceRayToHit = rayHitDetector.distance;
-			if(distanceRayToHit > skin){
-				deltaX = distanceRayToHit * -Mathf.Sign(deltaX) + Mathf.Sign(deltaX)*skin;
+		//Don't allow the player to run off the way.
+		float xPos = transform.position.x;
+		if (Mathf.Abs (xPos) > 8.5f) { //Todo - use wall positions instead of 8.5
+			if(xPos > 0 && deltaX > 0){
+				deltaX = 0;
 			}
-			else{
+			else if(xPos < 0 && deltaX < 0){
 				deltaX = 0;
 			}
 		}

@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour {
 		jumping = false;
 		sliding = false;
 		autoStarted = false;
-		setGravityDown(gravityPull);
+		gravity = Vector3.down * gravityPull;
 	}
 	
 	// Update is called once per frame
@@ -56,24 +56,6 @@ public class PlayerController : MonoBehaviour {
 		autoStartRun();
 
 		if (!sliding) {
-			//Increase speed if we're running
-			if (running) {
-				speed = runSpeed;
-			} 
-			else {
-				speed = walkSpeed;
-			}
-
-			#region Manual Vertical Input
-			if (enableVerticalInput) {
-				//KEYBOARD VERTICAL CONTROLLER
-				runningDirection = inputHandler.getVerticalInput();
-			}
-			else{
-				runningDirection = 1;
-			}
-			#endregion
-
 
 			//KEYBOARD HORIZONTAL CONTROLLER
 			float xSteer = inputHandler.getHorizontalInput();
@@ -85,16 +67,11 @@ public class PlayerController : MonoBehaviour {
 			}
 
 			//SET SPEED
-			if (runningDirection != 0) { 
-				targetSpeed = runningDirection * speed;
-			}
+			targetSpeed = runningDirection * speed;
 
 			currentSpeed = IncrementToward (currentSpeed, targetSpeed, acceleration);
 
-			//Face direction
-			if(runningDirection != 0){
-				transform.eulerAngles = Vector3.up * 90 * runningDirection;
-			}
+
 		}
 		else{
 			currentSpeed = IncrementToward(currentSpeed, targetSpeed, slideDeceleration);
@@ -214,27 +191,12 @@ public class PlayerController : MonoBehaviour {
 			//Only run once.
 			if(!autoStarted){
 				inputHandler.inputDisabled = false;
-				running = true;
+				speed = runSpeed;
 				autoStarted = true;
 			}
 		}
 	}
 
-	void setGravityDown(float gravityPull)
-	{
-		gravity = Vector3.down * gravityPull;
-	}
-	/*
-	void setGravityLeft(float gravityPull)
-	{
-		gravity = Vector3.left * gravityPull;
-	}
-
-	void setGravityRight(float gravityPull)
-	{
-		gravity = Vector3.right * gravityPull;
-	}
-	*/
 	public Vector3 getGravityDirection ()
 	{
 		return gravity.normalized;
