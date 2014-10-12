@@ -20,5 +20,8 @@ public class GameManager : MonoBehaviour {
 	public void gameFinished ()
 	{
 		print ("WOOPA! FINISHED THE GAME!");
+		PlayerController p = player.GetComponent<PlayerController> ();
+		p.GameFinished ();
+		print (p.gameFinished);
 	}
 }
