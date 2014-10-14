@@ -30,7 +30,6 @@ public class PointSystem : MonoBehaviour
 	public void addPoint(int coinValue){
 		totalPoints = totalPoints + coinValue*boosterMeter;
 	
-		addToBoosterMeter();
 	}
 	
 	
