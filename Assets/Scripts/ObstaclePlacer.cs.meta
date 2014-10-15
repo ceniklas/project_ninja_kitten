@@ -2,7 +2,10 @@ fileFormatVersion: 2
 guid: 290a690ade5b82b4a8bdb44b79f865ec
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - jumpObstacle: {instanceID: 0}
+  - slideObstacle: {instanceID: 0}
+  - point: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

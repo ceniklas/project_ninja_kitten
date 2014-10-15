@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour {
 	}
 	
 	private void spawnPlayer(){
-		cam.setTarget(((GameObject)(Instantiate (player, Vector3.zero, Quaternion.identity))).transform);
+		cam.setTarget(((GameObject)(Instantiate (player, new Vector3(0,0, -400), Quaternion.identity))).transform);
 	}
 
 	public void gameFinished ()
