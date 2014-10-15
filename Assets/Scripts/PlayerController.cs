@@ -6,6 +6,8 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	#region Variables
+	public bool gameFinished;
+
 	//Debugging Variables
 	private const bool enableVerticalInput = false;
 
@@ -28,7 +30,7 @@ public class PlayerController : MonoBehaviour {
 	//Player States
 	private bool jumping;
 	private bool sliding;
-	private bool running;
+	//private bool running;
 	private bool autoStarted;
 
 	//Player components
@@ -43,117 +45,97 @@ public class PlayerController : MonoBehaviour {
 		inputHandler = GetComponent<InputHandler>();
 		animator = GetComponent<Animator> ();
 		transform.eulerAngles = Vector3.up * 90;
-		running = false;
+		//running = false;
 		jumping = false;
 		sliding = false;
 		autoStarted = false;
-		setGravityDown(gravityPull);
+		gravity = Vector3.down * gravityPull;
+		print("playerstart");
+		gameFinished = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
-		autoStartRun();
-
-		if (!sliding) {
-			//Increase speed if we're running
-			if (running) {
-				speed = runSpeed;
-			} 
-			else {
-				speed = walkSpeed;
-			}
-
-			#region Manual Vertical Input
-			if (enableVerticalInput) {
-				//KEYBOARD VERTICAL CONTROLLER
-				runningDirection = inputHandler.getVerticalInput();
-			}
-			else{
-				runningDirection = 1;
-			}
-			#endregion
-
-
-			//KEYBOARD HORIZONTAL CONTROLLER
-			float xSteer = inputHandler.getHorizontalInput();
-			if(Mathf.Abs(xSteer) > 0.1){
-				movement.x += xSteer;
-			}
-			else{
-				movement.x = 0;
-			}
-
-			//SET SPEED
-			if (runningDirection != 0) { 
-				targetSpeed = runningDirection * speed;
-			}
-
-			currentSpeed = IncrementToward (currentSpeed, targetSpeed, acceleration);
-
-			//Face direction
-			if(runningDirection != 0){
-				transform.eulerAngles = Vector3.up * 90 * runningDirection;
-			}
-		}
-		else{
-			currentSpeed = IncrementToward(currentSpeed, targetSpeed, slideDeceleration);
-		}
-
-		if (jumping && !inputHandler.inputDisabled && Application.platform != RuntimePlatform.Android) {
-			if(inputHandler.getJumpingInput()){
-				movement -= getGravityDirection() * jumpHeight;
-				inputHandler.inputDisabled = true;
-			}
-		}
-
-		if (playerPhysics.getOnGround()) {
-			if(gravity.x == 0){
-				movement.y = 0;
-			}
-			else if(gravity.y == 0){
-				movement.x = 0;
-			}
-
-
-			#region Movement Restoration 
-			//If landed after a jump
-			if(jumping){
-				inputHandler.inputDisabled = false;
-				jumping = false;
-				animator.SetBool("JumpingListener", false);
-			}
-
-			//If we should stop sliding
-			if(sliding){
-				if(Mathf.Abs(currentSpeed) < runSpeed*0.8f){
-					sliding = false;
-					animator.SetBool("SlidingListener", false);
-					targetSpeed = runSpeed;
-					playerPhysics.ResetColliderSize();
-					inputHandler.inputDisabled = false;
+	if (gameFinished) {
+			print("ITS MUTHAFUCKING TRUEEE");
 				}
-			}
-			#endregion
+		if (!gameFinished) {
 
-			#region Player Movement Modification
-			//Allow a jump if the player is on ground and not currently sliding
-			if(inputHandler.getJumpingInput() && !sliding){ //Todo - use !inputdisabled instead
-				movement -= getGravityDirection() * jumpHeight;
-				jumping = true;
-				animator.SetBool("JumpingListener", true);
-			}
+						autoStartRun ();
 
-			if(inputHandler.getSlideInput() && !inputHandler.inputDisabled){
-				sliding = true;
-				inputHandler.inputDisabled = true;
-				animator.SetBool("SlidingListener", true);
-				targetSpeed = 0;
+						if (!sliding) {
 
-				playerPhysics.SetColliderSize(new Vector3(10.3f, 1.5f, 3.0f), new Vector3(0.35f, 0.75f, 0.0f));
-			}
+								//KEYBOARD HORIZONTAL CONTROLLER
+								float xSteer = inputHandler.getHorizontalInput ();
+								if (Mathf.Abs (xSteer) > 0.1) {
+										movement.x += xSteer;
+								} else {
+										movement.x = 0;
+								}
 
-			/*if(Input.GetButtonDown("GravityDown")){
+								//SET SPEED
+								targetSpeed = runningDirection * speed;
+
+								currentSpeed = IncrementToward (currentSpeed, targetSpeed, acceleration);
+
+
+						} else {
+								currentSpeed = IncrementToward (currentSpeed, targetSpeed, slideDeceleration);
+						}
+
+						if (jumping && !inputHandler.inputDisabled && Application.platform != RuntimePlatform.Android) {
+								if (inputHandler.getJumpingInput ()) {
+										movement -= getGravityDirection () * jumpHeight;
+										inputHandler.inputDisabled = true;
+								}
+						}
+
+						if (playerPhysics.getOnGround ()) {
+								if (gravity.x == 0) {
+										movement.y = 0;
+								} else if (gravity.y == 0) {
+										movement.x = 0;
+								}
+
+
+								#region Movement Restoration 
+								//If landed after a jump
+								if (jumping) {
+										inputHandler.inputDisabled = false;
+										jumping = false;
+										animator.SetBool ("JumpingListener", false);
+								}
+
+								//If we should stop sliding
+								if (sliding) {
+										if (Mathf.Abs (currentSpeed) < runSpeed * 0.8f) {
+												sliding = false;
+												animator.SetBool ("SlidingListener", false);
+												targetSpeed = runSpeed;
+												playerPhysics.ResetColliderSize ();
+												inputHandler.inputDisabled = false;
+										}
+								}
+								#endregion
+
+								#region Player Movement Modification
+								//Allow a jump if the player is on ground and not currently sliding
+								if (inputHandler.getJumpingInput () && !sliding) { //Todo - use !inputdisabled instead
+										movement -= getGravityDirection () * jumpHeight;
+										jumping = true;
+										animator.SetBool ("JumpingListener", true);
+								}
+
+								if (inputHandler.getSlideInput () && !inputHandler.inputDisabled) {
+										sliding = true;
+										inputHandler.inputDisabled = true;
+										animator.SetBool ("SlidingListener", true);
+										targetSpeed = 0;
+
+										playerPhysics.SetColliderSize (new Vector3 (10.3f, 1.5f, 3.0f), new Vector3 (0.35f, 0.75f, 0.0f));
+								}
+
+								/*if(Input.GetButtonDown("GravityDown")){
 				setGravityDown(gravityPull);
 			}
 
@@ -168,18 +150,19 @@ public class PlayerController : MonoBehaviour {
 				setGravityRight(gravityPull);
 				Debug.Log("GOING RIGHT");
 			}*/
-			#endregion
-		}
+								#endregion
+						}
 
 
-		//If needed, add inc-towards to get smoother transitions
-		animator.SetFloat("SpeedListener", Mathf.Abs(currentSpeed));
+						//If needed, add inc-towards to get smoother transitions
+						animator.SetFloat ("SpeedListener", Mathf.Abs (currentSpeed));
 
-		movement.z = currentSpeed;
-		movement.y += gravity.y * Time.deltaTime;
-		movement.x += gravity.x * Time.deltaTime;
+						movement.z = currentSpeed;
+						movement.y += gravity.y * Time.deltaTime;
+						movement.x += gravity.x * Time.deltaTime;
 
-		playerPhysics.move(movement * Time.deltaTime, gravity);
+						playerPhysics.move (movement * Time.deltaTime, gravity);
+				}
 	}
 
 	private float IncrementToward (float _currentSpeed, float _targetSpeed, float _acceleration)
@@ -214,29 +197,26 @@ public class PlayerController : MonoBehaviour {
 			//Only run once.
 			if(!autoStarted){
 				inputHandler.inputDisabled = false;
-				running = true;
+				speed = runSpeed;
 				autoStarted = true;
 			}
 		}
 	}
 
-	void setGravityDown(float gravityPull)
-	{
-		gravity = Vector3.down * gravityPull;
-	}
-	/*
-	void setGravityLeft(float gravityPull)
-	{
-		gravity = Vector3.left * gravityPull;
-	}
-
-	void setGravityRight(float gravityPull)
-	{
-		gravity = Vector3.right * gravityPull;
-	}
-	*/
 	public Vector3 getGravityDirection ()
 	{
 		return gravity.normalized;
+	}
+
+	public void GameFinished ()
+	{
+		print ("gamedone");
+		movement = Vector3.zero;
+		speed = 0;
+		targetSpeed = 0;
+		currentSpeed = 0;
+		print ("NOW IM GONNNA PUT THIS MUTHAFUCKING VARIABLEJL E RUEEEEEEEEEEEEEE");
+		gameFinished = true;
+		print (gameFinished);
 	}
 }
