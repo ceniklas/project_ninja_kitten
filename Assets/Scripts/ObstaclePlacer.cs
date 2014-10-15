@@ -34,11 +34,11 @@ public class ObstaclePlacer : MonoBehaviour {
 			else{
 				obstaclePosition = new Vector3(0, 0, n * distanceToObstacles);
 			}
-			switch (obstacle){
+			/*switch (obstacle){
 			case 1:
 			case 2:
 
-			}
+			}*/
 			//n starts at -10, therefore a +10 is needed
 			if (obstacleArray[n+10] == 0) {
 				obstacle = jumpObstacle;
