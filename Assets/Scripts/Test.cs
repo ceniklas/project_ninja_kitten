@@ -7,7 +7,7 @@ public class Test : MonoBehaviour {
 
 	void OnGUI () {
 		if (GUI.Button (new Rect (Screen.width * 0.5f, Screen.height *0.5f ,100, 25), "Add points")) {
-			script.ModifyPoints(1);
+			//script.ModifyPoints(1);
 		}
 	
 	}

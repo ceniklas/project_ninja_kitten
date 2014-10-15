@@ -3,34 +3,34 @@ using System.Collections;
 
 public class PointsBarScript : MonoBehaviour {
 
-	public PointSystem system;
-	public GameObject rainbowGUI;
-	private int currentPoints;
-	private int startingPoints = 0;
-	private int maxPoints = 5;
-	private GUITexture p;
+	public GameObject rainbowBarPrefab;
 	public Texture[] images;
 
-	// Use this for initialization
+	[HideInInspector]
+	public PointSystem thePointSystem;
+
+	private int currentTextureNumber;
+	private GUITexture theRainbowBar;
+	
 	void Start () {
-		system = GameObject.Find ("PointSystem").GetComponent<PointSystem>();
-		p=(GUITexture)Instantiate (rainbowGUI);
-		p.transform.parent = transform;
+		thePointSystem = GameObject.Find ("PointSystem").GetComponent<PointSystem>();
+		theRainbowBar = ((GameObject)Instantiate (rainbowBarPrefab)).guiTexture;
+		theRainbowBar.transform.parent = transform;
 	}
 
-	public void ModifyPoints(int p){
-		if(currentPoints < maxPoints){
-			currentPoints += p;
-			Debug.Log(currentPoints);
-
-		}
-		else{
-			currentPoints = startingPoints;
-		}
+	void Update(){
+		updateBar ();
 	}
-
+	
 	void updateBar(){
-		currentPoints = system.getCurrentPoints();
-		p.texture = images[currentPoints];
+		int times = thePointSystem.getPointsTimes();
+		currentTextureNumber = thePointSystem.getPointsInRow() - ((times-1)*6);
+
+		if (currentTextureNumber > 5) {
+			currentTextureNumber = 5;
+		}
+
+		theRainbowBar.texture = images[currentTextureNumber];
+		transform.guiText.text = times.ToString () + "x";
 	}
 }
