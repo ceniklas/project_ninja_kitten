@@ -50,7 +50,6 @@ public class PlayerController : MonoBehaviour {
 		sliding = false;
 		autoStarted = false;
 		gravity = Vector3.down * gravityPull;
-		print("playerstart");
 		gameFinished = false;
 	}
 	

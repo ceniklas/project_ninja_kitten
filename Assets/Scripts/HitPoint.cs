@@ -1,23 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HitCoin : MonoBehaviour {
+public class HitPoint : MonoBehaviour {
 
-	PointSystem p;
+	PointSystem thePointSystem;
 
 	void Start(){
 		//Finds the PointSystem script in totalpoints
-		p = GameObject.Find ("PointSystem").GetComponent<PointSystem>();
-			//transform.parent.parent.gameObject.GetComponentInChildren<PointSystem> ();
+		thePointSystem = GameObject.Find ("PointSystem").GetComponent<PointSystem>();
+			
 	}
 
 	void OnTriggerEnter(Collider other) {
 
 		//Make sure it's the player that has entered
 		if (other.tag == "Player") {
-			p.addPoint(1);
+			thePointSystem.addPoint();
 			Destroy(transform.parent.gameObject);
 		}
-
 	}
 }

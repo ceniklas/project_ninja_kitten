@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(GameManager))]
 public class CameraController : MonoBehaviour {
 
 	private Transform target;

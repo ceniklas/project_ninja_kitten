@@ -4,11 +4,14 @@ using System.Collections;
 public class TextOverlayController : MonoBehaviour {
 
 	public int time;
-	public GUIText timer;
+	public GameObject CountDownTextPrefab;
+
+	private GUIText timer;
 
 	// Use this for initialization
 	void Start () {
-		
+		timer = ((GameObject)Instantiate(CountDownTextPrefab)).GetComponent<GUIText>();
+
 	}
 	
 	// Update is called once per frame
