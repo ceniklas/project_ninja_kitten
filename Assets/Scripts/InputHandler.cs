@@ -56,6 +56,8 @@ public class InputHandler : MonoBehaviour {
 		}
 		return false;
 		#endif
+
+		return Input.GetButtonDown("Jump");
 	}
 
 	public bool getSlideInput(){
@@ -70,6 +72,8 @@ public class InputHandler : MonoBehaviour {
 		}
 		return false;
 		#endif
+
+		return Input.GetButtonDown("Slide");
 	}
 
 	public void SwipedUp(){
