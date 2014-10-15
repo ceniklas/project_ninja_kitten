@@ -60,7 +60,7 @@ GUIText:
   m_Text: 1x
   m_Anchor: 4
   m_Alignment: 1
-  m_PixelOffset: {x: 440, y: -22}
+  m_PixelOffset: {x: 650, y: 585}
   m_LineSpacing: 1
   m_TabSize: 4
   m_Font: {fileID: 0}
@@ -69,7 +69,7 @@ GUIText:
   m_FontStyle: 0
   m_Color:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4278190335
   m_PixelCorrect: 1
   m_RichText: 1
 --- !u!1001 &100100000

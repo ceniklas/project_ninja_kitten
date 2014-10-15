@@ -3,11 +3,11 @@ using System.Collections;
 
 public class HitPoint : MonoBehaviour {
 
-	PointSystem thePointSystem;
+	//PointSystem thePointSystem;
 
 	void Start(){
 		//Finds the PointSystem script in totalpoints
-		thePointSystem = GameObject.Find ("PointSystem").GetComponent<PointSystem>();
+		//thePointSystem = GameObject.Find ("PointSystem").GetComponent<PointSystem>();
 			
 	}
 
@@ -15,7 +15,8 @@ public class HitPoint : MonoBehaviour {
 
 		//Make sure it's the player that has entered
 		if (other.tag == "Player") {
-			thePointSystem.addPoint();
+			//thePointSystem.addPoint();
+			GameObject.Find ("PointSystem").GetComponent<PointSystem>().addPoint();
 			Destroy(transform.parent.gameObject);
 		}
 	}
