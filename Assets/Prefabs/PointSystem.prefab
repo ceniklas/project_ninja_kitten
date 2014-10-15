@@ -129,7 +129,7 @@ GUIText:
   m_Text: 1x
   m_Anchor: 4
   m_Alignment: 1
-  m_PixelOffset: {x: 440, y: -22}
+  m_PixelOffset: {x: 1375, y: 880}
   m_LineSpacing: 1
   m_TabSize: 4
   m_Font: {fileID: 0}
@@ -138,7 +138,7 @@ GUIText:
   m_FontStyle: 0
   m_Color:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4283256319
   m_PixelCorrect: 1
   m_RichText: 1
 --- !u!132 &13200002

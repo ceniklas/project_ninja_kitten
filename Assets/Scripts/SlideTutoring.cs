@@ -32,7 +32,7 @@ public class SlideTutoring : MonoBehaviour {
 		if (disp){
 			Time.timeScale = 0;
 			GUI.Box(tutoringRect, tutoringMessage);
-			if(GUI.Button(new Rect (625,300,100,50), "Resume Game")){
+			if(GUI.Button(new Rect (920,530,100,50), "Resume Game")){
 				Time.timeScale = 1;
 				disp = false;
 			}

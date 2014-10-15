@@ -7,14 +7,15 @@ public class MissedSuperPoint : MonoBehaviour {
 	
 	void Start(){
 		//Finds the PointSystem script 
-		thePointSystem = GameObject.Find ("PointSystem").GetComponent<PointSystem>();
+		//thePointSystem = GameObject.Find ("PointSystem").GetComponent<PointSystem>();
 	}
 
 	void OnTriggerEnter(Collider other) {
 		
 		//Make sure it's the player that has entered
 		if (other.tag == "Player") {
-			thePointSystem.removeSuperPoint();
+			//thePointSystem.removeSuperPoint();
+			GameObject.Find ("PointSystem").GetComponent<PointSystem>().removeSuperPoint();
 		}
 	}
 }

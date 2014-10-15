@@ -10,7 +10,7 @@ public class HitSuperPoint : MonoBehaviour {
 	
 	void Start () {
 		//Finds the PointSystem script 
-		thePointSystem = GameObject.Find ("PointSystem").GetComponent<PointSystem>();
+		//thePointSystem = GameObject.Find ("PointSystem").GetComponent<PointSystem>();
 
 		//Assign chosen color to the transform
 		renderer.material.color = SuperCubeColor;
@@ -21,7 +21,8 @@ public class HitSuperPoint : MonoBehaviour {
 		
 		//Make sure it's the player that has entered
 		if (other.tag == "Player") {
-			thePointSystem.addSuperPoint(SuperCubeColor);
+			//thePointSystem.addSuperPoint(SuperCubeColor);
+			GameObject.Find ("PointSystem").GetComponent<PointSystem>().addSuperPoint(SuperCubeColor);;
 			Destroy(transform.parent.gameObject);
 		}
 		
