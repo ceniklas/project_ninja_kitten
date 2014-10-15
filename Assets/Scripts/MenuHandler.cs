@@ -3,12 +3,17 @@ using System.Collections;
 
 public class MenuHandler : MonoBehaviour {
 
-	private Color defaultColor = new Color32(255,45,195,255);
+	public Color defaultColor;
 	public bool gameQuit = false;
 	public bool gamePaused = false;
+	public Color hoverColor;
+
+	void Start(){
+		renderer.material.color = defaultColor;
+	}
 
 	void OnMouseEnter(){
-		renderer.material.color = Color.black;
+		renderer.material.color = hoverColor;
 	}
 
 	void OnMouseExit(){
