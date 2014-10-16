@@ -42,6 +42,8 @@ MonoBehaviour:
   player: {fileID: 100056, guid: b12591bf52eb79f438047e5b16ab1b34, type: 2}
   mainCamera: {fileID: 100000, guid: def0d833979d2a345aa67b5ffb99a06f, type: 2}
   pointSystem: {fileID: 100002, guid: f4c97119b83490b4087b21338248010c, type: 2}
+  pauseButtonTexture: {fileID: 2800000, guid: 8177a528f62e5e345a195014abfeaab3, type: 3}
+  gameSkin: {fileID: 11400000, guid: 8c004e1ea50562e45b1fa1e832b9cfda, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -7,5 +7,7 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/mainmenu.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/scene.unity
+  - enabled: 1
+    path: Assets/HannasScene.unity

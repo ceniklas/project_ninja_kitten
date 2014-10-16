@@ -6,6 +6,9 @@ public class GameManager : MonoBehaviour {
 	public GameObject player;
 	public GameObject mainCamera;
 	public GameObject pointSystem;
+	public Texture2D pauseButtonTexture;
+	public GUISkin gameSkin;
+	private PauseMenu pause;
 
 	private CameraController cam;
 
@@ -16,6 +19,7 @@ public class GameManager : MonoBehaviour {
 		spawnCamera ();
 		spawnPointSytem ();
 		spawnPlayer ();
+		pause = cam.GetComponent<PauseMenu>();
 	}
 
 	private void spawnCamera ()
@@ -33,6 +37,16 @@ public class GameManager : MonoBehaviour {
 		cam.setTarget(((GameObject)(Instantiate (player, new Vector3(0,0, -400), Quaternion.identity))).transform);
 	}
 
+	private void OnGUI(){
+		GUI.skin = gameSkin;
+		//This is the only way I can come up with that will make the buttons move with the screen
+		GUILayout.BeginArea(new Rect(Screen.width - (Screen.width - 20), Screen.height *0.85f ,100,100));
+		if (GUI.Button (new Rect(0,0,100,100)," ")){
+			pause.setPause();
+		}
+		GUILayout.EndArea ();
+	}
+
 	public void gameFinished ()
 	{
 		print ("WOOPA! FINISHED THE GAME!");
@@ -40,4 +54,4 @@ public class GameManager : MonoBehaviour {
 		p.GameFinished ();
 		print (p.gameFinished);
 	}
-}
+}	
