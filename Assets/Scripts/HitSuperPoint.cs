@@ -22,14 +22,13 @@ public class HitSuperPoint : MonoBehaviour {
 		if (shouldBeDestroyed) {
 			Vector3 finalPos = new Vector3(6f, 12.85f, 0);
 
-			//if(transform.position == finalPos){
-			//	Destroy(transform.parent.gameObject);
-			//}else{
-			transform.Translate(new Vector3(6.395899f, 12.727016f, 0) * Time.deltaTime);
-			//}
+			if(transform.position.y > 14){
+				Destroy(transform.parent.gameObject);
+			}else{
+				transform.position += new Vector3(6f, 12.85f, 0) * Time.deltaTime * 2;
+			}
 		}
 	}
-
 
 	void OnTriggerEnter(Collider other) {
 		
@@ -37,7 +36,7 @@ public class HitSuperPoint : MonoBehaviour {
 		if (other.tag == "Player") {
 			//thePointSystem.addSuperPoint(SuperCubeColor);
 			GameObject.Find ("PointSystem").GetComponent<PointSystem>().addSuperPoint(SuperCubeColor);
-
+			Destroy(transform.parent.GetChild(1).gameObject);
 			shouldBeDestroyed = true;
 		}
 		
