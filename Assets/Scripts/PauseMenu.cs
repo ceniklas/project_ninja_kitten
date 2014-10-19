@@ -10,8 +10,8 @@ public class PauseMenu : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//Rect(float left, float top, float width, float height);
-		pauseRect = new Rect (Screen.width * 0.5f - 200, Screen.height * 0.5f - 100, 200, 200);
-		mainRect = new Rect (Screen.width * 0.5f, Screen.height * 0.5f - 100, 200, 200);
+		pauseRect = new Rect (Screen.width * 0.5f - 300, Screen.height * 0.5f - 120, 300, 300);
+		mainRect = new Rect (Screen.width * 0.5f, Screen.height * 0.5f - 120, 300, 300);
 	}
 
 	// Update is called once per frame
@@ -46,14 +46,14 @@ public class PauseMenu : MonoBehaviour {
 	}
 
 	void pauseFunc(int id){
-		if (GUI.Button (new Rect (55,85,100,50), "Resume Game")){
+		if (GUI.Button (new Rect (55,80,200,150), "Resume Game")){
 			ifPaused = false;
 			Time.timeScale = 1;
 		}
 	}
 
 	void mainFunc(int id){
-		if (GUI.Button (new Rect (55,85,100,50), "Main Menu")){
+		if (GUI.Button (new Rect (55,80,200,150), "Main Menu")){
 			ifPaused = false;
 			Time.timeScale = 1;
 			Application.LoadLevel(0);
