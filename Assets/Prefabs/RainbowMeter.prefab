@@ -58,7 +58,7 @@ GUIText:
   m_Enabled: 1
   serializedVersion: 3
   m_Text: 1x
-  m_Anchor: 4
+  m_Anchor: 2
   m_Alignment: 1
   m_PixelOffset: {x: 650, y: 585}
   m_LineSpacing: 1
