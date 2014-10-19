@@ -5,8 +5,11 @@ using System.Collections;
 public class InputHandler : MonoBehaviour {
 	
 	public bool inputDisabled;
+
+#if UNITY_ANDROID
 	private bool swipedUp;
 	private bool swipedDown;
+#endif
 
 	// Use this for initialization
 	void Start () {
@@ -14,66 +17,44 @@ public class InputHandler : MonoBehaviour {
 		swipedUp = false;
 		swipedDown = false;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-	public int getVerticalInput ()
-	{
-		int runningDirection =(int)Input.GetAxisRaw("Vertical");
-		
-		//PHONE VERTICAL CONTROLLER
-		if (Input.touchCount == 3) {
-			runningDirection = 1;
-		}
-		if (Input.touchCount == 4) {
-			runningDirection = -1;
-		}
-
-		return runningDirection;
-	}
 
 	public float getHorizontalInput ()
 	{
-		//int runningDirection =(int)Input.GetAxisRaw("Horizontal");
-		
-		return Input.GetAxisRaw("Horizontal");//Input.acceleration.x;
-		
-		//return runningDirection;
+		#if UNITY_EDITOR
+		return Input.GetAxisRaw("Horizontal");
+   		#elif UNITY_ANDROID
+		return Input.acceleration.x;
+		#else
+		return Input.GetAxisRaw("Horizontal");
+		#endif
 	}
 
 	public bool getJumpingInput(){
 		#if UNITY_EDITOR
 		return Input.GetButtonDown("Jump");
-		#endif
-
-		#if UNITY_ANDROID
+		#elif UNITY_ANDROID
 		if (swipedUp) {
 			swipedUp = false;
 			return true;
 		}
 		return false;
-		#endif
-
+		#else
 		return Input.GetButtonDown("Jump");
+		#endif
 	}
 
 	public bool getSlideInput(){
 		#if UNITY_EDITOR
 		return Input.GetButtonDown("Slide");
-		#endif
-
-		#if UNITY_ANDROID
+		#elif UNITY_ANDROID
 		if (swipedDown) {
 			swipedDown = false;
 			return true;
 		}
 		return false;
-		#endif
-
+		#else
 		return Input.GetButtonDown("Slide");
+		#endif
 	}
 
 	public void SwipedUp(){
