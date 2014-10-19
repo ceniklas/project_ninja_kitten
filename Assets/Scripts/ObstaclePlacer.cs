@@ -8,7 +8,7 @@ public class ObstaclePlacer : MonoBehaviour {
 	//public GameObject point;
 	private GameObject obstacle;
 	private int nrOfObstacles = 15;
-	private int startPos = -10;
+	private int startPos = -9;
 	private float distanceToObstacles = 30.0f;
 	private Vector3 obstaclePosition;
 	private int[] obstacleArray;
@@ -25,10 +25,10 @@ public class ObstaclePlacer : MonoBehaviour {
 		for (int n = startPos; n < nrOfObstacles; n++) {
 
 
-			if(posArray[n+10] == 2) {
+			if(posArray[n-startPos] == 2) {
 				obstaclePosition = new Vector3(4, 0, n * distanceToObstacles);
 			}
-			else if(posArray[n+10] == 1){
+			else if(posArray[n-startPos] == 1){
 				obstaclePosition = new Vector3(-4, 0, n * distanceToObstacles);
 			}
 			else{
@@ -39,8 +39,8 @@ public class ObstaclePlacer : MonoBehaviour {
 			case 2:
 
 			}*/
-			//n starts at -10, therefore a +10 is needed
-			if (obstacleArray[n+10] == 0) {
+
+			if (obstacleArray[n-startPos] == 0) {
 				obstacle = jumpObstacle;
 				//Instantiate(point, obstaclePosition + new Vector3(0, 4, 0), Quaternion.identity);
 			}
