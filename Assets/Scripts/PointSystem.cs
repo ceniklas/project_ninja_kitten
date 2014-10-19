@@ -8,6 +8,7 @@ public class PointSystem : MonoBehaviour
 	private int totalPoints;
 	private int pointsTimes;
 	private int pointsInRow;
+	private int longestStreak = 0;
 
 	void Start(){
 		totalPoints = 0;
@@ -38,18 +39,22 @@ public class PointSystem : MonoBehaviour
 
 		pointsInRow++;
 
-		if (pointsInRow > 17) {
+		if (pointsInRow == 15) {
 			pointsTimes = 4;
 		}
-		else if (pointsInRow > 11) {
+		else if (pointsInRow == 10) {
 			pointsTimes = 3;
 		}
-		else if (pointsInRow > 5) {
+		else if (pointsInRow == 5) {
 			pointsTimes = 2;
 		}
 	}
 
 	public void removeSuperPoint(){
+		if (longestStreak < pointsInRow) {
+			longestStreak = pointsInRow;
+		}
+
 		pointsInRow = 0;
 		pointsTimes = 1;
 	}
@@ -62,6 +67,11 @@ public class PointSystem : MonoBehaviour
 	public int getPointsTimes ()
 	{
 		return pointsTimes;
+	}
+
+	public int getLongestStreak()
+	{
+		return longestStreak;
 	}
 }
 

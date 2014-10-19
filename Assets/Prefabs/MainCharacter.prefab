@@ -872,7 +872,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df3be8398442b747a5b49a9dac06806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameFinished: 0
   gravity: {x: 0, y: 0, z: 0}
+  healthBarValue: 0
+  progressBarEmpty: {fileID: 0}
+  progressBarFull: {fileID: 0}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

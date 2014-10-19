@@ -110,7 +110,13 @@ public class PlayerPhysics : MonoBehaviour {
 					deltaZ = 0;
 				}
 
-				Destroy(rayHitDetector.transform.gameObject);
+				Handheld.Vibrate();
+				gameObject.GetComponent<PlayerController>().healthBarValue -= 0.5f;
+				//Destroy(rayHitDetector.transform.gameObject);
+				Physics.gravity = new Vector3(0, -50, 0);
+				//rayHitDetector.transform.rigidbody.freezeRotation = false;
+				rayHitDetector.transform.rigidbody.constraints = RigidbodyConstraints.None;
+
 			
 				break; //If a ray hits we don't have to check the rest.
 			}

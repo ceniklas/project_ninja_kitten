@@ -75,13 +75,17 @@ public class PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if (healthBarValue < 1.0f) {
+			healthBarValue += Time.deltaTime*0.05f;
+		}
+
 		autoStartRun ();
 
 		if (!sliding) {
 
 				//KEYBOARD HORIZONTAL CONTROLLER
 				float xSteer = inputHandler.getHorizontalInput ();
-				if (Mathf.Abs (xSteer) > 0.1) {
+				if (Mathf.Abs (xSteer) > 0.1 && !inputHandler.inputDisabled) {
 						movement.x += xSteer;
 				} else {
 						movement.x = 0;
@@ -91,7 +95,6 @@ public class PlayerController : MonoBehaviour {
 				targetSpeed = speed;
 
 				currentSpeed = IncrementToward (currentSpeed, targetSpeed, acceleration);
-
 
 		} else {
 				currentSpeed = IncrementToward (currentSpeed, targetSpeed, slideDeceleration);
@@ -193,8 +196,6 @@ Debug.Log("GOING RIGHT");
 		}
 	}
 
-
-
 	public Vector3 getGravityDirection ()
 	{
 		return gravity.normalized;
@@ -211,4 +212,45 @@ Debug.Log("GOING RIGHT");
 		gameFinished = true;
 		print (gameFinished);
 	}
+
+	#region HEALTHBAR
+	public float healthBarValue = 0.0f; 
+	private Vector2 healthBarSize = new Vector2(300,40); 
+	private Vector2 healthBarPos = new Vector2(Screen.width/2 - 150,40); 
+	public Texture2D progressBarEmpty; //Ge fina texturer i prefab om man vill
+	public Texture2D progressBarFull;
+
+	private void OnGUI(){
+		//draw the background
+		GUI.BeginGroup(new Rect(healthBarPos.x, healthBarPos.y, healthBarSize.x, healthBarSize.y));
+			GUI.Box (new Rect (0, 0, healthBarSize.x, healthBarSize.y), progressBarEmpty);
+
+			//draw the filled-in part:
+			GUI.BeginGroup(new Rect(0,0, healthBarSize.x * healthBarValue, healthBarSize.y));
+				GUI.Box(new Rect(0,0, healthBarSize.x, healthBarSize.y), progressBarFull);
+			GUI.EndGroup();
+		GUI.EndGroup();
+		
+	}
+	#endregion
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
