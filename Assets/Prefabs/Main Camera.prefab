@@ -14,6 +14,7 @@ GameObject:
   - 81: {fileID: 8100000}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400002}
+  - 114: {fileID: 11400004}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -103,6 +104,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time: 0
   CountDownTextPrefab: {fileID: 100000, guid: e871f35f3187ebf45837634d51614f9f, type: 2}
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde64ea5bd2bafa4f8f56ca6d2b6e476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseSkin: {fileID: 11400000, guid: 3ba1b42769b58874e81a9419f89696a1, type: 2}
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
