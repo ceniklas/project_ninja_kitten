@@ -15,7 +15,7 @@ MonoBehaviour:
   m_box:
     m_Name: box
     m_Normal:
-      m_Background: {fileID: 2800000, guid: e2b7ce76cffabe64fbdf0c5f893838d8, type: 3}
+      m_Background: {fileID: 0}
       m_TextColor: {r: 1, g: 1, b: 1, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
@@ -49,10 +49,10 @@ MonoBehaviour:
       m_Top: 0
       m_Bottom: 0
     m_Padding:
-      m_Left: 17
+      m_Left: 0
       m_Right: 0
-      m_Top: 90
-      m_Bottom: 4
+      m_Top: 5
+      m_Bottom: 5
     m_Overflow:
       m_Left: 0
       m_Right: 0
