@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour {
 			if(Time.time - timeSinceDeath > 2){
 				playerDied = false;
 				timeSinceDeath = 0;
-				Application.LoadLevel("HannasScene");
+				Application.LoadLevel(Application.loadedLevelName);
 			}
 		}
 
