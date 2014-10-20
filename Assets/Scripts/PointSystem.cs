@@ -73,5 +73,9 @@ public class PointSystem : MonoBehaviour
 	{
 		return longestStreak;
 	}
+
+	public int getTotalPoints(){
+		return totalPoints;
+	}
 }
 

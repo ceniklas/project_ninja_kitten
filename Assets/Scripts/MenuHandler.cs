@@ -26,6 +26,7 @@ public class MenuHandler : MonoBehaviour {
 		}
 		else{
 			Application.LoadLevel(1);
+			Time.timeScale = 1;
 		}
 
 	}
