@@ -164,22 +164,6 @@ public class PlayerController : MonoBehaviour {
 
 						playerPhysics.SetColliderSize (new Vector3 (10.3f, 1.5f, 3.0f), new Vector3 (0.35f, 0.75f, 0.0f));
 				}
-
-				/*if(Input.GetButtonDown("GravityDown")){
-setGravityDown(gravityPull);
-}
-
-if(Input.GetButtonDown("GravityLeft")){
-setGravityLeft(gravityPull);
-Debug.Log("GOING LEFT");
-transform.eulerAngles = new Vector3(1, 1 , 0) * 90;
-//transform.Rotate(new Vector3(0,90,0));
-}
-
-if(Input.GetButtonDown("GravityRight")){
-setGravityRight(gravityPull);
-Debug.Log("GOING RIGHT");
-}*/
 				#endregion
 		}
 
@@ -218,7 +202,7 @@ Debug.Log("GOING RIGHT");
 	private bool playerDied = false;
 	private float timeSinceDeath = 0;
 
-	#region HEALTHBAR
+	#region GUI-stuff
 	public float healthBarValue = 0.0f; 
 	private Vector2 healthBarSize = new Vector2(300,40); 
 	private Vector2 healthBarPos = new Vector2(Screen.width *0.5f - 150,30); 
