@@ -14,8 +14,10 @@ public class InputHandler : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		inputDisabled = false;
+#if UNITY_ANDROID
 		swipedUp = false;
 		swipedDown = false;
+#endif
 	}
 
 	public float getHorizontalInput ()
@@ -56,7 +58,7 @@ public class InputHandler : MonoBehaviour {
 		return Input.GetButtonDown("Slide");
 		#endif
 	}
-
+#if UNITY_ANDROID
 	public void SwipedUp(){
 		swipedUp = true;
 	}
@@ -64,4 +66,5 @@ public class InputHandler : MonoBehaviour {
 	public void SwipedDown(){
 		swipedDown = true; 
 	}
+#endif
 }
