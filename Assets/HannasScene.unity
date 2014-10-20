@@ -4748,6 +4748,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 364853229}
+  - 54: {fileID: 364853230}
   m_Layer: 8
   m_Name: SignJump
   m_TagString: Untagged
@@ -4770,6 +4771,22 @@ Transform:
   - {fileID: 607354291}
   m_Father: {fileID: 1215968459}
   m_RootOrder: 0
+--- !u!54 &364853230
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 570f6af32a011af4fb6d9cf24f2c8b29,
+    type: 2}
+  m_PrefabInternal: {fileID: 847594062}
+  m_GameObject: {fileID: 364853228}
+  serializedVersion: 2
+  m_Mass: .300000012
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &366449974
 GameObject:
   m_ObjectHideFlags: 0
@@ -8818,7 +8835,7 @@ Transform:
   m_PrefabInternal: {fileID: 847594062}
   m_GameObject: {fileID: 772194971}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -.231059551, z: 0}
+  m_LocalPosition: {x: 0, y: -.231059551, z: .419999987}
   m_LocalScale: {x: 10, y: 1.20000005, z: .25}
   m_Children: []
   m_Father: {fileID: 364853229}
@@ -11666,6 +11683,60 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1775845298}
   m_GameObject: {fileID: 1005413084}
   m_Mesh: {fileID: 4300000, guid: b8875e79107a9f14e97d13c7ed4e716a, type: 3}
+--- !u!1 &1009320094
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1009320096}
+  - 114: {fileID: 1009320095}
+  - 65: {fileID: 1009320097}
+  m_Layer: 0
+  m_Name: Finish Line
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1009320095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1009320094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20eb2d4c99fe8d74ba4a65eda694a7c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  finishLine: {fileID: 100006, guid: 2bb46fd31f7d0e244ab9a5c4dc8a0ff3, type: 2}
+  finishSkin: {fileID: 11400000, guid: 2ac2716e3b0390f4b95ae077c943dcfa, type: 2}
+--- !u!4 &1009320096
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1009320094}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 480}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+--- !u!65 &1009320097
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1009320094}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 18, y: 10, z: 1}
+  m_Center: {x: 0, y: 4, z: 0}
 --- !u!1001 &1012377398
 Prefab:
   m_ObjectHideFlags: 0
@@ -13377,7 +13448,7 @@ Transform:
   m_PrefabInternal: {fileID: 1754117925}
   m_GameObject: {fileID: 1168315137}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.34717894, z: 0}
+  m_LocalPosition: {x: 0, y: 2.34717894, z: .239999995}
   m_LocalScale: {x: 10, y: 3, z: .25}
   m_Children: []
   m_Father: {fileID: 1738992844}
@@ -19705,6 +19776,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1738992844}
+  - 54: {fileID: 1738992845}
   m_Layer: 8
   m_Name: SignSlide
   m_TagString: Untagged
@@ -19727,6 +19799,22 @@ Transform:
   - {fileID: 1061231609}
   m_Father: {fileID: 1215968459}
   m_RootOrder: 5
+--- !u!54 &1738992845
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: f3afd62047622094dab57f04602dce9d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1754117925}
+  m_GameObject: {fileID: 1738992843}
+  serializedVersion: 2
+  m_Mass: .300000012
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1001 &1754117925
 Prefab:
   m_ObjectHideFlags: 0

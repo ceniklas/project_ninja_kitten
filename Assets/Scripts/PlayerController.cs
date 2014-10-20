@@ -6,8 +6,6 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	#region Variables
-	public bool gameFinished;
-
 	//Debugging Variables
 	private const bool enableVerticalInput = false;
 
@@ -49,7 +47,6 @@ public class PlayerController : MonoBehaviour {
 		sliding = false;
 		autoStarted = false;
 		gravity = Vector3.down * gravityPull;
-		gameFinished = false;
 	}
 
 	void autoStartRun ()
