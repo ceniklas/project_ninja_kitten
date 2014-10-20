@@ -217,6 +217,7 @@ Debug.Log("GOING RIGHT");
 		return gravity.normalized;
 	}
 
+	public GUISkin gameSkin;
 	private bool playerDied = false;
 	private float timeSinceDeath = 0;
 
@@ -228,6 +229,8 @@ Debug.Log("GOING RIGHT");
 	public Texture2D progressBarFull;
 
 	private void OnGUI(){
+		GUI.skin = gameSkin;
+
 		//draw the background
 		GUI.BeginGroup(new Rect(healthBarPos.x, healthBarPos.y, healthBarSize.x, healthBarSize.y));
 			GUI.Box (new Rect (0, 0, healthBarSize.x, healthBarSize.y), progressBarEmpty);
@@ -239,6 +242,7 @@ Debug.Log("GOING RIGHT");
 		GUI.EndGroup();
 
 		if (playerDied) {
+
 			GUI.TextField(new Rect(700, 150, 300, 300), "You diededdeded");
 
 		}
