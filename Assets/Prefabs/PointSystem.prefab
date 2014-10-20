@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae5ce9f2a7f033429a4e9327e7a184b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinImage: {fileID: 2800000, guid: 217dc3a5fdd872b42aff493cb9332229, type: 3}
 --- !u!132 &13200000
 GUIText:
   m_ObjectHideFlags: 1
