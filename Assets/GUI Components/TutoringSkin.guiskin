@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 12001, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: TutoringSkin
   m_EditorClassIdentifier: 
-  m_Font: {fileID: 12800000, guid: f17eaa91f3efecb4ab6e6b1d3926e67f, type: 3}
+  m_Font: {fileID: 12800000, guid: 20b9982a0ee5f7e41ba7311006d70b50, type: 3}
   m_box:
     m_Name: box
     m_Normal:
@@ -251,11 +251,11 @@ MonoBehaviour:
   m_textField:
     m_Name: textfield
     m_Normal:
-      m_Background: {fileID: 11024, guid: 0000000000000000e000000000000000, type: 0}
-      m_TextColor: {r: .799999952, g: .799999952, b: .799999952, a: 1}
+      m_Background: {fileID: 2800000, guid: e2b7ce76cffabe64fbdf0c5f893838d8, type: 3}
+      m_TextColor: {r: 1, g: 1, b: 1, a: 1}
     m_Hover:
-      m_Background: {fileID: 11026, guid: 0000000000000000e000000000000000, type: 0}
-      m_TextColor: {r: .899999976, g: .899999976, b: .899999976, a: 1}
+      m_Background: {fileID: 2800000, guid: e2b7ce76cffabe64fbdf0c5f893838d8, type: 3}
+      m_TextColor: {r: 1, g: 1, b: 1, a: 1}
     m_Active:
       m_Background: {fileID: 0}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
@@ -263,7 +263,7 @@ MonoBehaviour:
       m_Background: {fileID: 11026, guid: 0000000000000000e000000000000000, type: 0}
       m_TextColor: {r: 1, g: 1, b: 1, a: 1}
     m_OnNormal:
-      m_Background: {fileID: 11025, guid: 0000000000000000e000000000000000, type: 0}
+      m_Background: {fileID: 2800000, guid: e2b7ce76cffabe64fbdf0c5f893838d8, type: 3}
       m_TextColor: {r: 1, g: 1, b: 1, a: 1}
     m_OnHover:
       m_Background: {fileID: 0}
@@ -285,9 +285,9 @@ MonoBehaviour:
       m_Top: 4
       m_Bottom: 4
     m_Padding:
-      m_Left: 3
+      m_Left: 30
       m_Right: 3
-      m_Top: 3
+      m_Top: 150
       m_Bottom: 3
     m_Overflow:
       m_Left: 0
@@ -297,7 +297,7 @@ MonoBehaviour:
     m_Font: {fileID: 0}
     m_FontSize: 0
     m_FontStyle: 0
-    m_Alignment: 0
+    m_Alignment: 1
     m_WordWrap: 0
     m_RichText: 0
     m_TextClipping: 1
