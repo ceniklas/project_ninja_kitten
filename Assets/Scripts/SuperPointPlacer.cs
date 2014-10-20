@@ -5,24 +5,19 @@ public class SuperPointPlacer : MonoBehaviour {
 
 	public GameObject superPoint;
 	private GameObject superPlacer;
-	private int maximumPoints = 5;
-	private int distanceBetween = 3;
-	private int start = 0;
+	private int maximumPoints = 1;
+	private int distanceBetween = 12;
+	private int start = -27;
 	private Vector3 pointPosition, firstSuperPoint;
 	private int xPos;
 	private int margin = 6;
 	private int[] posArray;
-	private const int size = 22;
+	private const int size = 12;
 	
 	// Use this for initialization
 	void Start () {
-		posArray = new int[size]{4,-4,0,4,4,-4,-4,4,-4,4,-4,-4,4,0,0,4,-4,4,0,0,0,0};
-
-		firstSuperPoint = new Vector3 (0,0, -370);
-
-		GameObject superPlacer = (GameObject)Instantiate (superPoint, firstSuperPoint, Quaternion.identity);
-		superPlacer.transform.parent = transform;
-		
+		posArray = new int[size]{0,0,0,4,-4,4,-4,4,4,4,0, 0};
+			
 		for (int n=0; n<size; n++) {
 			xPos = posArray [n];
 			start = createRowOfCoins (xPos);
