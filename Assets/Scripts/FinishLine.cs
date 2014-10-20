@@ -17,7 +17,7 @@ public class FinishLine : MonoBehaviour {
 
 		finishPosition = new Vector3 (0, 0, 480);
 		r = new Rect (Screen.width * 0.5f -500, Screen.height * 0.5f - 500, 1000, 1000);
-		pointBox = new Rect (Screen.width * 0.5f -700, Screen.height * 0.5f, 500, 200);
+		pointBox = new Rect (Screen.width * 0.15f, Screen.height * 0.4f, 500, 200);
 
 		fin = (GameObject)Instantiate (finishLine, finishPosition, Quaternion.identity);
 		fin.transform.parent = transform;
@@ -52,7 +52,6 @@ public class FinishLine : MonoBehaviour {
 
 		if(displayFinish){
 			string message = "Congratulations! \n You finished the game!";
-			//GUI.Label(new Rect(750,100,500,100),"Congratualitions! \n You finished the game!" + thePoints);
 			GUI.Window(0, r, displayPoints, message);
 
 
@@ -66,11 +65,11 @@ public class FinishLine : MonoBehaviour {
 		stringStreak = "Longest streak: " + theStreak.ToString ();
 		s = stringPoint + "\n \n" + stringStreak;
 		GUI.Box (pointBox, s);
-		if (GUI.Button (new Rect (Screen.width * 0.5f - 700, Screen.height * 0.5f + 200, 250, 100), "Main Menu")) {
-			Application.LoadLevel(0);
+		if (GUI.Button (new Rect (Screen.width * 0.15f, Screen.height * 0.6f, 250, 100), "Main Menu")) {
+			Application.LoadLevel("mainmenu");
 		}
 
-		if (GUI.Button (new Rect (Screen.width * 0.5f - 400, Screen.height * 0.5f + 200, 250, 100), "Next Level")) {
+		if (GUI.Button (new Rect (Screen.width * 0.3f, Screen.height * 0.6f, 250, 100), "Next Level")) {
 			Application.LoadLevel(0);
 		}
 	}

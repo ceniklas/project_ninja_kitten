@@ -39,6 +39,7 @@ public class PointsBarScript : MonoBehaviour {
 
 		theRainbowBar.texture = images [currentTextureNumber];
 
-		transform.guiText.text = times.ToString () + "x";
+		transform.guiText.text = "x" + times.ToString ();
+		transform.guiText.pixelOffset = new Vector2 (Screen.width * 0.75f, Screen.height);
 	}
 }

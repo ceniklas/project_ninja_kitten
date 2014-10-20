@@ -9,6 +9,7 @@ public class MenuHandler : MonoBehaviour {
 	public Color hoverColor;
 
 	void Start(){
+		Screen.orientation = ScreenOrientation.Landscape;
 		renderer.material.color = defaultColor;
 	}
 

@@ -21,8 +21,8 @@ public class PointSystem : MonoBehaviour
 		GUIText[] c = GetComponentsInChildren<GUIText> ();
 		totalPointsText = c [0];
 
-		totalPointsText.text = "x " + totalPoints.ToString();
-		totalPointsText.pixelOffset = new Vector2 (40, -15);
+		totalPointsText.text = "x" + totalPoints.ToString();
+		totalPointsText.pixelOffset = new Vector2 (Screen.width * 0.073f, Screen.height);
 	}
 
 	public Texture2D coinImage; //Ge fina texturer i prefab om man vill
