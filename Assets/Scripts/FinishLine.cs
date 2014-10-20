@@ -15,8 +15,7 @@ public class FinishLine : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 	
-		GameManager g = GameObject.Find ("Main Camera").GetComponent<GameManager> (); //Todo - maybe detach gamemanager from maincamera
-		g.gameFinished();
+		//Hanna do stuff <3
 
 
 	}

@@ -201,18 +201,6 @@ Debug.Log("GOING RIGHT");
 		return gravity.normalized;
 	}
 
-	public void GameFinished ()
-	{
-		print ("gamedone");
-		movement = Vector3.zero;
-		speed = 0;
-		targetSpeed = 0;
-		currentSpeed = 0;
-		print ("NOW IM GONNNA PUT THIS MUTHAFUCKING VARIABLEJL E RUEEEEEEEEEEEEEE");
-		gameFinished = true;
-		print (gameFinished);
-	}
-
 	#region HEALTHBAR
 	public float healthBarValue = 0.0f; 
 	private Vector2 healthBarSize = new Vector2(300,40); 
