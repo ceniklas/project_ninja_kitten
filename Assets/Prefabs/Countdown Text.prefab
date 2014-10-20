@@ -42,13 +42,13 @@ GUIText:
   m_PixelOffset: {x: 0, y: 0}
   m_LineSpacing: 1
   m_TabSize: 4
-  m_Font: {fileID: 12800000, guid: 6a252b114be372446b0e527543eef9e9, type: 3}
+  m_Font: {fileID: 12800000, guid: f17eaa91f3efecb4ab6e6b1d3926e67f, type: 3}
   m_Material: {fileID: 0}
   m_FontSize: 100
   m_FontStyle: 1
   m_Color:
     serializedVersion: 2
-    rgba: 4294902015
+    rgba: 4280790015
   m_PixelCorrect: 1
   m_RichText: 1
 --- !u!1001 &100100000

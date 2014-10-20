@@ -18,7 +18,7 @@ public class TextOverlayController : MonoBehaviour {
 		int theTime = (int)Time.timeSinceLevelLoad;
 		timer.enabled = false;
 
-		if (theTime == 5) {
+		if (theTime == 3) {
 			timer.text = "RUN!";
 			timer.enabled = true;
 		}
