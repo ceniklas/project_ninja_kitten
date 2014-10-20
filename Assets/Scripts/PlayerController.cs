@@ -79,6 +79,22 @@ public class PlayerController : MonoBehaviour {
 			healthBarValue += Time.deltaTime*0.05f;
 		}
 
+		if (healthBarValue < 0) {
+			playerDied = true;
+			healthBarValue = -1000;
+			currentSpeed = 0;
+
+			if(timeSinceDeath == 0){
+				timeSinceDeath = Time.time;
+			}
+
+			if(Time.time - timeSinceDeath > 2){
+				playerDied = false;
+				timeSinceDeath = 0;
+				Application.LoadLevel("HannasScene");
+			}
+		}
+
 		autoStartRun ();
 
 		if (!sliding) {
@@ -201,6 +217,9 @@ Debug.Log("GOING RIGHT");
 		return gravity.normalized;
 	}
 
+	private bool playerDied = false;
+	private float timeSinceDeath = 0;
+
 	#region HEALTHBAR
 	public float healthBarValue = 0.0f; 
 	private Vector2 healthBarSize = new Vector2(300,40); 
@@ -218,6 +237,11 @@ Debug.Log("GOING RIGHT");
 				GUI.Box(new Rect(0,0, healthBarSize.x, healthBarSize.y), progressBarFull);
 			GUI.EndGroup();
 		GUI.EndGroup();
+
+		if (playerDied) {
+			GUI.TextField(new Rect(700, 150, 300, 300), "You diededdeded");
+
+		}
 		
 	}
 	#endregion

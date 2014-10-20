@@ -21,6 +21,8 @@ public class PlayerPhysics : MonoBehaviour {
 	private int nrOfColRaysUpDown = 5;
 	private int nrOfColRaysForwardBack = 10;
 
+	private float timeSinceLastCollision = 0;
+
 	private bool onGround;
 	private const float skin = 0.05f;
 
@@ -111,10 +113,13 @@ public class PlayerPhysics : MonoBehaviour {
 				}
 
 				Handheld.Vibrate();
-				gameObject.GetComponent<PlayerController>().healthBarValue -= 0.5f;
-				//Destroy(rayHitDetector.transform.gameObject);
+				if(Time.time - timeSinceLastCollision > 3){
+					gameObject.GetComponent<PlayerController>().healthBarValue -= 0.5f;
+					timeSinceLastCollision = Time.time;
+				}
+
+
 				Physics.gravity = new Vector3(0, -50, 0);
-				//rayHitDetector.transform.rigidbody.freezeRotation = false;
 				rayHitDetector.transform.rigidbody.constraints = RigidbodyConstraints.None;
 
 			
