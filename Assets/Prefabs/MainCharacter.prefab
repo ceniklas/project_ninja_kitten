@@ -872,11 +872,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df3be8398442b747a5b49a9dac06806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameFinished: 0
   gravity: {x: 0, y: 0, z: 0}
+  gameSkin: {fileID: 11400000, guid: 8c004e1ea50562e45b1fa1e832b9cfda, type: 2}
   healthBarValue: 0
   progressBarEmpty: {fileID: 0}
-  progressBarFull: {fileID: 0}
+  progressBarFull: {fileID: 2800000, guid: 3c92c68f652bd054c9c2ccbf882ed68e, type: 3}
+  health: {fileID: 2800000, guid: 3a52ee77227e69f469c5fc79d9c8dc0d, type: 3}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -51,10 +51,10 @@ public class PlayerController : MonoBehaviour {
 
 	void autoStartRun ()
 	{
-		if (Time.timeSinceLevelLoad < 5) {
+		if (Time.timeSinceLevelLoad < 3) {
 			inputHandler.inputDisabled = true;
 			
-			if(Time.timeSinceLevelLoad >= 3){
+			if(Time.timeSinceLevelLoad >= 1){
 				speed = walkSpeed;
 			}else{
 				return;
@@ -221,26 +221,28 @@ Debug.Log("GOING RIGHT");
 	#region HEALTHBAR
 	public float healthBarValue = 0.0f; 
 	private Vector2 healthBarSize = new Vector2(300,40); 
-	private Vector2 healthBarPos = new Vector2(Screen.width/2 - 150,40); 
+	private Vector2 healthBarPos = new Vector2(Screen.width *0.5f - 150,30); 
 	public Texture2D progressBarEmpty; //Ge fina texturer i prefab om man vill
 	public Texture2D progressBarFull;
+	public Texture2D health;
 
 	private void OnGUI(){
 		GUI.skin = gameSkin;
 
 		//draw the background
+		GUI.Box (new Rect(healthBarPos.x - 50, healthBarPos.y - 5, 50, 50), health);
 		GUI.BeginGroup(new Rect(healthBarPos.x, healthBarPos.y, healthBarSize.x, healthBarSize.y));
 			GUI.Box (new Rect (0, 0, healthBarSize.x, healthBarSize.y), progressBarEmpty);
 
 			//draw the filled-in part:
 			GUI.BeginGroup(new Rect(0,0, healthBarSize.x * healthBarValue, healthBarSize.y));
-				GUI.Box(new Rect(0,0, healthBarSize.x, healthBarSize.y), progressBarFull);
+				GUI.Box(new Rect(0,0, healthBarSize.x , healthBarSize.y + 35), progressBarFull);
 			GUI.EndGroup();
 		GUI.EndGroup();
 
 		if (playerDied) {
 
-			GUI.TextField(new Rect(700, 150, 300, 300), "You diededdeded");
+			GUI.TextField(new Rect(700, 150, 500, 500), "Game Over \n Try again!");
 
 		}
 		

@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 12001, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: TutoringSkin
   m_EditorClassIdentifier: 
-  m_Font: {fileID: 12800000, guid: 8069b9ffd1664a64b9c0894be86d1d41, type: 3}
+  m_Font: {fileID: 12800000, guid: f17eaa91f3efecb4ab6e6b1d3926e67f, type: 3}
   m_box:
     m_Name: box
     m_Normal:
