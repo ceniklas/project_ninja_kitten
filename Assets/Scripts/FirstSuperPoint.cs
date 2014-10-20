@@ -7,7 +7,7 @@ public class FirstSuperPoint : MonoBehaviour {
 	public Texture2D phone;
 	public GameObject superPoint;
 	private GameObject sp;
-	private Rect superRect;
+	private Rect superRect, buttonRect;
 	private float timer;
 	private Vector3 firstPos;
 	
@@ -16,6 +16,7 @@ public class FirstSuperPoint : MonoBehaviour {
 
 	void Start () {
 		superRect = new Rect (Screen.width * 0.5f - 250, Screen.height * 0.5f - 400, 500, 500);
+		buttonRect = new Rect (Screen.width * 0.5f - 250, Screen.height * 0.5f - 400, 200, 200);
 
 		firstPos = new Vector3 (0,0,-370);
 
@@ -34,11 +35,14 @@ public class FirstSuperPoint : MonoBehaviour {
 		GUI.skin = tutoringSkin;
 		
 		if (displayInfo){
-			GUI.TextField(superRect, info);
-			if(GUI.Button(superRect, "Knapp")){
-				displayInfo = false;
-				Time.timeScale = 1;
-			}
+			superRect = GUI.Window(0, superRect, superFunc, " ");
+		}
+	}
+	void superFunc(int id){
+		GUI.TextField(new Rect (10,80,500,300), info);
+		if (GUI.Button(new Rect (220,380,100,50), "OK")){
+			displayInfo = false;
+			Time.timeScale = 1;
 		}
 	}
 

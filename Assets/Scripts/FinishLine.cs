@@ -70,7 +70,8 @@ public class FinishLine : MonoBehaviour {
 		}
 
 		if (GUI.Button (new Rect (Screen.width * 0.3f, Screen.height * 0.6f, 250, 100), "Next Level")) {
-			Application.LoadLevel(0);
+			Application.LoadLevel("NiklasScene");
+			Time.timeScale = 1;
 		}
 	}
 }
