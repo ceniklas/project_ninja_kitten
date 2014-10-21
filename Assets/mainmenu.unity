@@ -404,8 +404,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: .5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1.25999999
+  m_Center: {x: 0, y: -1, z: 0}
 --- !u!33 &239762473
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -472,7 +472,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 8823bdc9bd53fb64080e45778c76041e, type: 2}
+  - {fileID: 2100000, guid: 490329f374215784faa0231ac80b47cd, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -505,7 +505,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 256900999}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: -4.37113883e-08}
   m_LocalPosition: {x: -49.4849701, y: 4.81667519, z: 346.528107}
   m_LocalScale: {x: 20, y: 10, z: 1}
   m_Children: []
@@ -1256,7 +1256,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 945742980}
-  m_Text: Color  Hunt
+  m_Text: Ninja Run
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -1266,10 +1266,10 @@ TextMesh:
   m_FontSize: 0
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 12800000, guid: 6a252b114be372446b0e527543eef9e9, type: 3}
+  m_Font: {fileID: 12800000, guid: 20b9982a0ee5f7e41ba7311006d70b50, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4290971584
+    rgba: 4278232063
 --- !u!23 &945742983
 Renderer:
   m_ObjectHideFlags: 0
@@ -1282,7 +1282,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 6a252b114be372446b0e527543eef9e9, type: 3}
+  - {fileID: 2100000, guid: 20b9982a0ee5f7e41ba7311006d70b50, type: 3}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -1297,7 +1297,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 945742980}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -49.3147049, y: 7.65112591, z: 345.877625}
+  m_LocalPosition: {x: -49.3147049, y: 7.89197063, z: 345.877625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1504,8 +1504,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: .5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1.25999999
+  m_Center: {x: 0, y: -1, z: 0}
 --- !u!33 &1108369536
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1747,10 +1747,10 @@ TextMesh:
   m_FontSize: 0
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 12800000, guid: 6a252b114be372446b0e527543eef9e9, type: 3}
+  m_Font: {fileID: 12800000, guid: 20b9982a0ee5f7e41ba7311006d70b50, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4290971584
+    rgba: 4278232063
 --- !u!23 &1290282130
 Renderer:
   m_ObjectHideFlags: 0
@@ -1763,7 +1763,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 6a252b114be372446b0e527543eef9e9, type: 3}
+  - {fileID: 2100000, guid: 20b9982a0ee5f7e41ba7311006d70b50, type: 3}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -1794,7 +1794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5427be901c2e43e4bb7f5d15994e4497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultColor: {r: .754546106, g: .028114168, b: .764705896, a: 1}
+  defaultColor: {r: 1, g: .641129076, b: 0, a: 1}
   gameQuit: 0
   gamePaused: 0
   hoverColor: {r: 1, g: 1, b: 1, a: 1}
@@ -1913,8 +1913,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: .5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1.25999999
+  m_Center: {x: 0, y: -1, z: 0}
 --- !u!33 &1346834246
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1999,8 +1999,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: .5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1.25999999
+  m_Center: {x: 0, y: -1, z: 0}
 --- !u!33 &1384622111
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2129,10 +2129,10 @@ TextMesh:
   m_FontSize: 0
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 12800000, guid: 6a252b114be372446b0e527543eef9e9, type: 3}
+  m_Font: {fileID: 12800000, guid: 20b9982a0ee5f7e41ba7311006d70b50, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4290971584
+    rgba: 4278232063
 --- !u!23 &1450429801
 Renderer:
   m_ObjectHideFlags: 0
@@ -2145,7 +2145,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 6a252b114be372446b0e527543eef9e9, type: 3}
+  - {fileID: 2100000, guid: 20b9982a0ee5f7e41ba7311006d70b50, type: 3}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -2160,7 +2160,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1450429798}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -49.6077652, y: 1.55342293, z: 345.553406}
+  m_LocalPosition: {x: -49.6077652, y: 1.68109703, z: 345.553406}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2176,7 +2176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5427be901c2e43e4bb7f5d15994e4497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultColor: {r: .754546106, g: .028114168, b: .764705896, a: 1}
+  defaultColor: {r: 1, g: .641129076, b: 0, a: 1}
   gameQuit: 1
   gamePaused: 0
   hoverColor: {r: 1, g: 1, b: 1, a: 1}
@@ -2624,8 +2624,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: .5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1.25999999
+  m_Center: {x: 0, y: -1, z: 0}
 --- !u!33 &1824140171
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2984,8 +2984,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: .5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1.25999999
+  m_Center: {x: 0, y: -1, z: 0}
 --- !u!33 &2063380979
 MeshFilter:
   m_ObjectHideFlags: 0
